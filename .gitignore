@@ -1,6 +1,14 @@
 *~
-*log
-*class
-*xml
+*.log
+*.class
+*.xml
 *auto.cgpr
 *main.bexch
+*.ali
+*.o
+*main
+*b-main.adb
+*b__main.adb
+*b-main.ads
+*b__main.ads
+*gnatprove

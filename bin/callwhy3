@@ -1,8 +1,2 @@
-echo why3 ide -C ~/.why3.modified.conf -L ~/Dropbox/sparkada2014/why3Theories/theories-critsys2018-19-fromLinuxLab/why3TheoriesForSparkAda/ $1 
-why3 ide -C ~/.why3.modified.conf -L ~/Dropbox/sparkada2014/why3Theories/theories-critsys2018-19-fromLinuxLab/why3TheoriesForSparkAda/ $1 
-
-#echo /usr/bin/why3 ide -L /usr/local/src/why3/why3TheoriesForSparkAda/ $1 &
-#/usr/bin/why3 ide -L /usr/local/src/why3/why3TheoriesForSparkAda/ $1 &
-
-# echo why3 ide -C ~/.why3.myversion.conf -L /usr/local/src/why3/why3TheoriesForSparkAda/ $1 &
-# why3 ide -C ~/.why3.myversion.conf -L /usr/local/src/why3/why3TheoriesForSparkAda/ $1 &
+echo why3 ide -C ~/git/criticalhighintegritysystems/lib/why3.conf -L ~/git/criticalhighintegritysystems/why3TheoriesForSparkAda/ $1
+why3 ide -C ~/git/criticalhighintegritysystems/lib/why3.conf -L ~/git/criticalhighintegritysystems/why3TheoriesForSparkAda/ $1
