@@ -6,7 +6,7 @@ Procedure Example8 is
    Answer : Character;
 begin
    loop 
-      Put("Say y or n :");
+      Put("Answer yes (y) or no (n):");
       Get(Answer);
       if Answer = 'y' then
 	 Put_Line("You said yes");
