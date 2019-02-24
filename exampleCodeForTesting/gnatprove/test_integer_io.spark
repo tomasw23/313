@@ -1,0 +1,224 @@
+{
+  "spark": [
+    {
+      "name": "Test_Integer_IO",
+      "sloc": [
+        {
+          "file": "test_integer_io.ads",
+          "line": 15
+        }
+      ],
+      "spark": "all"
+    }
+  ],
+  "flow": [
+    {
+      "file": "test_integer_io.ads",
+      "line": 16,
+      "col": 49,
+      "rule": "UNINITIALIZED",
+      "severity": "info",
+      "entity": {
+        "name": "Test_Integer_IO",
+        "sloc": [
+          {
+            "file": "test_integer_io.ads",
+            "line": 15
+          }
+        ]
+      }
+    },
+    {
+      "file": "test_integer_io.ads",
+      "line": 16,
+      "col": 32,
+      "rule": "UNINITIALIZED",
+      "severity": "info",
+      "entity": {
+        "name": "Test_Integer_IO",
+        "sloc": [
+          {
+            "file": "test_integer_io.ads",
+            "line": 15
+          }
+        ]
+      }
+    },
+    {
+      "file": "test_integer_io.adb",
+      "line": 13,
+      "col": 4,
+      "rule": "UNINITIALIZED",
+      "severity": "info",
+      "entity": {
+        "name": "Test_Integer_IO",
+        "sloc": [
+          {
+            "file": "test_integer_io.ads",
+            "line": 15
+          }
+        ]
+      }
+    },
+    {
+      "file": "test_integer_io.adb",
+      "line": 16,
+      "col": 4,
+      "rule": "UNINITIALIZED",
+      "severity": "info",
+      "entity": {
+        "name": "Test_Integer_IO",
+        "sloc": [
+          {
+            "file": "test_integer_io.ads",
+            "line": 15
+          }
+        ]
+      }
+    },
+    {
+      "file": "test_integer_io.adb",
+      "line": 16,
+      "col": 4,
+      "rule": "UNINITIALIZED",
+      "severity": "info",
+      "entity": {
+        "name": "Test_Integer_IO",
+        "sloc": [
+          {
+            "file": "test_integer_io.ads",
+            "line": 15
+          }
+        ]
+      }
+    },
+    {
+      "file": "test_integer_io.adb",
+      "line": 18,
+      "col": 4,
+      "rule": "UNINITIALIZED",
+      "severity": "info",
+      "entity": {
+        "name": "Test_Integer_IO",
+        "sloc": [
+          {
+            "file": "test_integer_io.ads",
+            "line": 15
+          }
+        ]
+      }
+    },
+    {
+      "file": "test_integer_io.adb",
+      "line": 19,
+      "col": 11,
+      "rule": "UNINITIALIZED",
+      "severity": "info",
+      "entity": {
+        "name": "Test_Integer_IO",
+        "sloc": [
+          {
+            "file": "test_integer_io.ads",
+            "line": 15
+          }
+        ]
+      }
+    },
+    {
+      "file": "test_integer_io.adb",
+      "line": 19,
+      "col": 4,
+      "rule": "UNINITIALIZED",
+      "severity": "info",
+      "entity": {
+        "name": "Test_Integer_IO",
+        "sloc": [
+          {
+            "file": "test_integer_io.ads",
+            "line": 15
+          }
+        ]
+      }
+    }
+  ],
+  "proof": [
+  ],
+  "assumptions": [
+    {
+      "assumptions": [
+        {
+          "predicate": "CLAIM_EFFECTS",
+          "arg": {
+            "name": "AS_Io_Wrapper.AS_Put_Line",
+            "sloc": [
+              {
+                "file": "as_io_wrapper.ads",
+                "line": 83
+              }
+            ]
+          }
+        },
+        {
+          "predicate": "CLAIM_EFFECTS",
+          "arg": {
+            "name": "AS_Io_Wrapper.AS_Init_Standard_Input",
+            "sloc": [
+              {
+                "file": "as_io_wrapper.ads",
+                "line": 25
+              }
+            ]
+          }
+        },
+        {
+          "predicate": "CLAIM_EFFECTS",
+          "arg": {
+            "name": "AS_Io_Wrapper.AS_Get",
+            "sloc": [
+              {
+                "file": "as_io_wrapper.ads",
+                "line": 106
+              }
+            ]
+          }
+        },
+        {
+          "predicate": "CLAIM_EFFECTS",
+          "arg": {
+            "name": "AS_Io_Wrapper.AS_Init_Standard_Output",
+            "sloc": [
+              {
+                "file": "as_io_wrapper.ads",
+                "line": 32
+              }
+            ]
+          }
+        },
+        {
+          "predicate": "CLAIM_EFFECTS",
+          "arg": {
+            "name": "AS_Io_Wrapper.AS_Put",
+            "sloc": [
+              {
+                "file": "as_io_wrapper.ads",
+                "line": 114
+              }
+            ]
+          }
+        }
+      ],
+      "claim": {
+        "predicate": "CLAIM_EFFECTS",
+        "arg": {
+          "name": "Test_Integer_IO",
+          "sloc": [
+            {
+              "file": "test_integer_io.ads",
+              "line": 15
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
