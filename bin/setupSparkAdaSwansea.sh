@@ -11,7 +11,7 @@ mkdir -p $HOME/bin
 echo mkdir -p $HOME/git
 mkdir -p $HOME/git
 
-if [ -d $HOME/git ]; then
+if [ -d $HOME/git/criticalhighintegritysystems/ ]; then
     echo cd $HOME/git/criticalhighintegritysystems/; echo git pull
     cd $HOME/git/criticalhighintegritysystems/; git pull
 else
