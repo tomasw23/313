@@ -48,6 +48,8 @@ cp $HOME/git/criticalhighintegritysystems/bin/callwhy3 $HOME/bin
 echo cp $HOME/git/criticalhighintegritysystems/bin/mygnatprove $HOME/bin
 cp $HOME/git/criticalhighintegritysystems/bin/mygnatprove $HOME/bin
 
+echo cp $HOME/git/criticalhighintegritysystems/bin/updateGitCritsys $HOME/bin
+cp $HOME/git/criticalhighintegritysystems/bin/updateGitCritsys $HOME/bin
 
 
 echo chmod u+x $HOME/bin/callgps
