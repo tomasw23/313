@@ -51,6 +51,9 @@ cp $HOME/git/criticalhighintegritysystems/bin/mygnatprove $HOME/bin
 echo cp $HOME/git/criticalhighintegritysystems/bin/updateGitCritsys $HOME/bin
 cp $HOME/git/criticalhighintegritysystems/bin/updateGitCritsys $HOME/bin
 
+echo cp $HOME/git/criticalhighintegritysystems/bin/updateGitCritsys $HOME/bin
+cp $HOME/git/criticalhighintegritysystems/bin/updateGitCritsys $HOME/bin
+
 
 echo chmod u+x $HOME/bin/callgps
 chmod u+x $HOME/bin/callgps
