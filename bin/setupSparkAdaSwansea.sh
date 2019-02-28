@@ -51,8 +51,8 @@ cp $HOME/git/criticalhighintegritysystems/bin/mygnatprove $HOME/bin
 echo cp $HOME/git/criticalhighintegritysystems/bin/updateGitCritsys $HOME/bin
 cp $HOME/git/criticalhighintegritysystems/bin/updateGitCritsys $HOME/bin
 
-echo cp $HOME/git/criticalhighintegritysystems/bin/updateGitCritsys $HOME/bin
-cp $HOME/git/criticalhighintegritysystems/bin/updateGitCritsys $HOME/bin
+echo cp $HOME/git/criticalhighintegritysystems/bin/createGitRepository.sh $HOME/bin
+cp $HOME/git/criticalhighintegritysystems/bin/createGitRepository.sh $HOME/bin
 
 
 echo chmod u+x $HOME/bin/callgps
@@ -64,6 +64,8 @@ chmod u+x $HOME/bin/callwhy3
 echo chmod u+x $HOME/bin/mygnatprove
 chmod u+x $HOME/bin/mygnatprove
 
+echo chmod u+x $HOME/bin/createGitRepository.sh
+chmod u+x $HOME/bin/createGitRepository.sh
 
 echo "The following instructions will change your file settings so that"
 echo "when clicking on selected spark ada and why3 files the"
