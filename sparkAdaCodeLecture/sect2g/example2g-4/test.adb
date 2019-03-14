@@ -9,16 +9,16 @@ package body Test is
 	
      
    
-   procedure Inc (A : in out Integer) is
+   procedure Inc2 (A : in out Integer) is
    begin
       A:= A + 2;
-   end Inc;
+   end Inc2;
 
    
    Procedure Main (A : out Integer) is
    begin
       Init(A);
-      Inc(A);
+      Inc2(A);
    end Main;
 
 end Test;

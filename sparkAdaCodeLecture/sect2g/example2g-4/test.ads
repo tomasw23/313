@@ -7,7 +7,7 @@ package Test is
      with Depends => (A => null),
           Post => (A = 0);
    
-   procedure Inc(A : in out Integer)
+   procedure Inc2(A : in out Integer)
      with Depends => (A => A),
           Post => (A = A'Old + 2);
    
