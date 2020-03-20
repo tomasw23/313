@@ -52,6 +52,22 @@ package body AS_IO_Wrapper is
       SPARK.Text_IO.Get (Item);
    end AS_Get;
    
+   procedure AS_Clear_Buffer is
+      -- sometimes whenn running AS_Get(x) where x : Integer;
+      -- there is some strange error message, because something is still left in the buffer of user inputs.
+      --  Running As_Clear_Buffer before AS_Get(x)  allows to clear what's left in the current buffer.      
+      Item : String(1 .. 1);
+   begin
+      SPARK.Text_IO.Get (Item);
+      -- work around since SPARK ada wants Item to be used,
+      -- but we don't really need it.
+      if Item = " " then return;
+      else return;
+      end if;
+	 
+   end AS_Clear_Buffer;
+   
+   
    
    procedure AS_Put (Item : in  String) is
    begin
@@ -80,6 +96,10 @@ package body AS_IO_Wrapper is
    end As_Put_Line;
    
    procedure AS_Get (Item  : out Integer; Prompt_Try_Again_When_Not_Integer : in String := "Please type in an integer; please try again") is
+      -- sometimes whenn running AS_Get(x) where x : Integer;
+      -- there is some strange error message, because something is still left in the buffer of user inputs.
+      -- Running As_Clear_Buffer before AS_Get(x)  allows to clear what's left in the current buffer and avoid this problem
+      
       Length_String : constant Integer := 512;
       Input_By_User : String(1 .. Length_String);
       Converted_Result  : Integer_Result;

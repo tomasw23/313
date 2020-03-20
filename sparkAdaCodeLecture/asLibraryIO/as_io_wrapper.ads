@@ -56,6 +56,8 @@ is
      Depends=> (Standard_Input => Standard_Input,
 		Item => Standard_Input);
    
+   procedure AS_Clear_Buffer;   
+   
    -- as_put writes a string to standard_output
    procedure AS_Put (Item : in  String)
        with Global => (In_Out => Standard_Output),

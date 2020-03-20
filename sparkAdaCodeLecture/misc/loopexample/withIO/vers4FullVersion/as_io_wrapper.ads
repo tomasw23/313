@@ -2,8 +2,6 @@
 pragma SPARK_Mode (On);
 
 
-with SPARK.Text_IO;
-use  SPARK.Text_IO;
 
 -- This is a wrapper around spark.text_io and spark.text_IO.integer_Io;
 -- We pretend here that after initizlisation we can always read and write
@@ -17,6 +15,9 @@ use  SPARK.Text_IO;
 -- functions named AS_Put* write output on the console
 -- functions named AS_Get* get input from the console
 
+with SPARK.Text_IO;
+use SPARK.Text_IO;
+
 
 package AS_Io_Wrapper 
 is
@@ -24,22 +25,22 @@ is
    -- this procedure initialises standard input
    procedure AS_Init_Standard_Input 
      with Global => (Output => Standard_Input),
-          Depends => (Standard_Input  => null),
-          Post => Is_Readable (Standard_Input) and
-     Status (Standard_Input) = Success;
+          Depends => (Standard_Input  => null);
+--          Post => Is_Readable (Standard_Input);-- and
+--     Status (Standard_Input) = Success;
    
    -- this procedure initialises standard output
    procedure AS_Init_Standard_Output 
      with Global => (Output => Standard_Output),
-          Depends => (Standard_Output  => null),     
-          Post => Is_Writable (Standard_Output) 
-     and Status (Standard_Output) = Success;
+          Depends => (Standard_Output  => null);     
+--          Post => Is_Writable (Standard_Output); 
+--     and Status (Standard_Output) = Success;
    
-   -- as_get gets a character from console IO
-   procedure AS_Get (Item : out Character_Result)
-     with Global => (In_Out => (Standard_Input)),
-     Depends=> (Standard_Input => Standard_Input,
-		Item => Standard_Input);
+   --  -- as_get gets a character from console IO
+   --  procedure AS_Get (Item : out Character_Result)
+   --    with Global => (In_Out => (Standard_Input)),
+   --    Depends=> (Standard_Input => Standard_Input,
+   --  		Item => Standard_Input);
    
    -- as_put writes a character onto console IO   
    procedure AS_Put (Item : in  Character)
@@ -54,6 +55,8 @@ is
           with Global => (In_Out => (Standard_Input)),
      Depends=> (Standard_Input => Standard_Input,
 		Item => Standard_Input);
+   
+   procedure AS_Clear_Buffer;   
    
    -- as_put writes a string to standard_output
    procedure AS_Put (Item : in  String)
