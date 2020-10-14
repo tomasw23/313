@@ -1119,18 +1119,6 @@
         {
           "predicate": "CLAIM_EFFECTS",
           "arg": {
-            "name": "SPARK.Text_IO.Is_Standard_Error",
-            "sloc": [
-              {
-                "file": "spark-text_io.ads",
-                "line": 147
-              }
-            ]
-          }
-        },
-        {
-          "predicate": "CLAIM_EFFECTS",
-          "arg": {
             "name": "SPARK.Text_IO.Is_Standard_Input",
             "sloc": [
               {
@@ -1148,6 +1136,18 @@
               {
                 "file": "spark-text_io.ads",
                 "line": 143
+              }
+            ]
+          }
+        },
+        {
+          "predicate": "CLAIM_EFFECTS",
+          "arg": {
+            "name": "SPARK.Text_IO.Is_Standard_Error",
+            "sloc": [
+              {
+                "file": "spark-text_io.ads",
+                "line": 147
               }
             ]
           }
@@ -1603,11 +1603,11 @@
         {
           "predicate": "CLAIM_EFFECTS",
           "arg": {
-            "name": "SPARK.Text_IO.Is_Standard_Error",
+            "name": "SPARK.Text_IO.Is_Standard_Output",
             "sloc": [
               {
                 "file": "spark-text_io.ads",
-                "line": 147
+                "line": 143
               }
             ]
           }
@@ -1615,11 +1615,11 @@
         {
           "predicate": "CLAIM_EFFECTS",
           "arg": {
-            "name": "SPARK.Text_IO.Is_Standard_Output",
+            "name": "SPARK.Text_IO.Is_Standard_Error",
             "sloc": [
               {
                 "file": "spark-text_io.ads",
-                "line": 143
+                "line": 147
               }
             ]
           }

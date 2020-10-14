@@ -405,6 +405,30 @@
         {
           "predicate": "CLAIM_EFFECTS",
           "arg": {
+            "name": "AS_Io_Wrapper.AS_Init_Standard_Input",
+            "sloc": [
+              {
+                "file": "as_io_wrapper.ads",
+                "line": 25
+              }
+            ]
+          }
+        },
+        {
+          "predicate": "CLAIM_EFFECTS",
+          "arg": {
+            "name": "AS_Io_Wrapper.AS_Put",
+            "sloc": [
+              {
+                "file": "as_io_wrapper.ads",
+                "line": 59
+              }
+            ]
+          }
+        },
+        {
+          "predicate": "CLAIM_EFFECTS",
+          "arg": {
             "name": "AS_Io_Wrapper.AS_Init_Standard_Output",
             "sloc": [
               {
@@ -458,30 +482,6 @@
               {
                 "file": "as_io_wrapper.ads",
                 "line": 76
-              }
-            ]
-          }
-        },
-        {
-          "predicate": "CLAIM_EFFECTS",
-          "arg": {
-            "name": "AS_Io_Wrapper.AS_Init_Standard_Input",
-            "sloc": [
-              {
-                "file": "as_io_wrapper.ads",
-                "line": 25
-              }
-            ]
-          }
-        },
-        {
-          "predicate": "CLAIM_EFFECTS",
-          "arg": {
-            "name": "AS_Io_Wrapper.AS_Put",
-            "sloc": [
-              {
-                "file": "as_io_wrapper.ads",
-                "line": 59
               }
             ]
           }
@@ -505,11 +505,11 @@
         {
           "predicate": "CLAIM_POST",
           "arg": {
-            "name": "AS_Io_Wrapper.AS_Init_Standard_Output",
+            "name": "AS_Io_Wrapper.AS_Init_Standard_Input",
             "sloc": [
               {
                 "file": "as_io_wrapper.ads",
-                "line": 32
+                "line": 25
               }
             ]
           }
@@ -517,23 +517,11 @@
         {
           "predicate": "CLAIM_EFFECTS",
           "arg": {
-            "name": "AS_Io_Wrapper.AS_Init_Standard_Output",
+            "name": "AS_Io_Wrapper.AS_Init_Standard_Input",
             "sloc": [
               {
                 "file": "as_io_wrapper.ads",
-                "line": 32
-              }
-            ]
-          }
-        },
-        {
-          "predicate": "CLAIM_AORTE",
-          "arg": {
-            "name": "AS_Io_Wrapper.AS_Init_Standard_Output",
-            "sloc": [
-              {
-                "file": "as_io_wrapper.ads",
-                "line": 32
+                "line": 25
               }
             ]
           }
@@ -541,11 +529,11 @@
         {
           "predicate": "CLAIM_EFFECTS",
           "arg": {
-            "name": "AS_Io_Wrapper.AS_Get",
+            "name": "AS_Io_Wrapper.AS_Put",
             "sloc": [
               {
                 "file": "as_io_wrapper.ads",
-                "line": 106
+                "line": 59
               }
             ]
           }
@@ -553,23 +541,11 @@
         {
           "predicate": "CLAIM_AORTE",
           "arg": {
-            "name": "AS_Io_Wrapper.AS_Get",
+            "name": "AS_Io_Wrapper.AS_Init_Standard_Input",
             "sloc": [
               {
                 "file": "as_io_wrapper.ads",
-                "line": 106
-              }
-            ]
-          }
-        },
-        {
-          "predicate": "CLAIM_EFFECTS",
-          "arg": {
-            "name": "AS_Io_Wrapper.AS_Put_Line",
-            "sloc": [
-              {
-                "file": "as_io_wrapper.ads",
-                "line": 83
+                "line": 25
               }
             ]
           }
@@ -577,59 +553,11 @@
         {
           "predicate": "CLAIM_AORTE",
           "arg": {
-            "name": "AS_Io_Wrapper.AS_Put_Line",
+            "name": "AS_Io_Wrapper.AS_Put",
             "sloc": [
               {
                 "file": "as_io_wrapper.ads",
-                "line": 83
-              }
-            ]
-          }
-        },
-        {
-          "predicate": "CLAIM_EFFECTS",
-          "arg": {
-            "name": "AS_Io_Wrapper.AS_Put_Line",
-            "sloc": [
-              {
-                "file": "as_io_wrapper.ads",
-                "line": 119
-              }
-            ]
-          }
-        },
-        {
-          "predicate": "CLAIM_AORTE",
-          "arg": {
-            "name": "AS_Io_Wrapper.AS_Put_Line",
-            "sloc": [
-              {
-                "file": "as_io_wrapper.ads",
-                "line": 119
-              }
-            ]
-          }
-        },
-        {
-          "predicate": "CLAIM_EFFECTS",
-          "arg": {
-            "name": "AS_Io_Wrapper.AS_Get_Line",
-            "sloc": [
-              {
-                "file": "as_io_wrapper.ads",
-                "line": 76
-              }
-            ]
-          }
-        },
-        {
-          "predicate": "CLAIM_AORTE",
-          "arg": {
-            "name": "AS_Io_Wrapper.AS_Get_Line",
-            "sloc": [
-              {
-                "file": "as_io_wrapper.ads",
-                "line": 76
+                "line": 59
               }
             ]
           }
@@ -637,11 +565,11 @@
         {
           "predicate": "CLAIM_POST",
           "arg": {
-            "name": "AS_Io_Wrapper.AS_Init_Standard_Input",
+            "name": "AS_Io_Wrapper.AS_Init_Standard_Output",
             "sloc": [
               {
                 "file": "as_io_wrapper.ads",
-                "line": 25
+                "line": 32
               }
             ]
           }
@@ -649,11 +577,23 @@
         {
           "predicate": "CLAIM_EFFECTS",
           "arg": {
-            "name": "AS_Io_Wrapper.AS_Init_Standard_Input",
+            "name": "AS_Io_Wrapper.AS_Init_Standard_Output",
             "sloc": [
               {
                 "file": "as_io_wrapper.ads",
-                "line": 25
+                "line": 32
+              }
+            ]
+          }
+        },
+        {
+          "predicate": "CLAIM_AORTE",
+          "arg": {
+            "name": "AS_Io_Wrapper.AS_Init_Standard_Output",
+            "sloc": [
+              {
+                "file": "as_io_wrapper.ads",
+                "line": 32
               }
             ]
           }
@@ -661,11 +601,11 @@
         {
           "predicate": "CLAIM_EFFECTS",
           "arg": {
-            "name": "AS_Io_Wrapper.AS_Put",
+            "name": "AS_Io_Wrapper.AS_Get",
             "sloc": [
               {
                 "file": "as_io_wrapper.ads",
-                "line": 59
+                "line": 106
               }
             ]
           }
@@ -673,11 +613,23 @@
         {
           "predicate": "CLAIM_AORTE",
           "arg": {
-            "name": "AS_Io_Wrapper.AS_Init_Standard_Input",
+            "name": "AS_Io_Wrapper.AS_Get",
             "sloc": [
               {
                 "file": "as_io_wrapper.ads",
-                "line": 25
+                "line": 106
+              }
+            ]
+          }
+        },
+        {
+          "predicate": "CLAIM_EFFECTS",
+          "arg": {
+            "name": "AS_Io_Wrapper.AS_Put_Line",
+            "sloc": [
+              {
+                "file": "as_io_wrapper.ads",
+                "line": 83
               }
             ]
           }
@@ -685,11 +637,59 @@
         {
           "predicate": "CLAIM_AORTE",
           "arg": {
-            "name": "AS_Io_Wrapper.AS_Put",
+            "name": "AS_Io_Wrapper.AS_Put_Line",
             "sloc": [
               {
                 "file": "as_io_wrapper.ads",
-                "line": 59
+                "line": 83
+              }
+            ]
+          }
+        },
+        {
+          "predicate": "CLAIM_EFFECTS",
+          "arg": {
+            "name": "AS_Io_Wrapper.AS_Put_Line",
+            "sloc": [
+              {
+                "file": "as_io_wrapper.ads",
+                "line": 119
+              }
+            ]
+          }
+        },
+        {
+          "predicate": "CLAIM_AORTE",
+          "arg": {
+            "name": "AS_Io_Wrapper.AS_Put_Line",
+            "sloc": [
+              {
+                "file": "as_io_wrapper.ads",
+                "line": 119
+              }
+            ]
+          }
+        },
+        {
+          "predicate": "CLAIM_EFFECTS",
+          "arg": {
+            "name": "AS_Io_Wrapper.AS_Get_Line",
+            "sloc": [
+              {
+                "file": "as_io_wrapper.ads",
+                "line": 76
+              }
+            ]
+          }
+        },
+        {
+          "predicate": "CLAIM_AORTE",
+          "arg": {
+            "name": "AS_Io_Wrapper.AS_Get_Line",
+            "sloc": [
+              {
+                "file": "as_io_wrapper.ads",
+                "line": 76
               }
             ]
           }
