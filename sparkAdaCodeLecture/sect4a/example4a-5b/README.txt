@@ -1,4 +1,4 @@
-This is the  corrected version of example2d-5
+This is the  corrected version of example4a-5
 
 gnatprove -P main.gpr --proof=per_path
 

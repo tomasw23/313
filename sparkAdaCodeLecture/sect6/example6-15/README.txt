@@ -42,7 +42,7 @@ echo.adb:32:18: medium: precondition of main program might fail
 use_float_io.adb:32:18: medium: precondition of main program might fail
 echo_1.adb:32:18: medium: precondition of main program might fail
 use_enum_io.adb:32:18: medium: precondition of main program might fail
-Summary logged in /home/csetzer/Dropbox/sparkada2014/critsys2015/critsys2014/sect2g/example2g-15/gnatprove/gnatprove.out
+Summary logged in /home/csetzer/Dropbox/sparkada2014/critsys2015/critsys2014/sect6/example6-15/gnatprove/gnatprove.out
 
 
 Output when running gnatprove -P main.gpr --proof=per_check
@@ -67,10 +67,10 @@ echo.adb:32:18: medium: precondition of main program might fail
 use_float_io.adb:32:18: medium: precondition of main program might fail
 echo_1.adb:32:18: medium: precondition of main program might fail
 use_enum_io.adb:32:18: medium: precondition of main program might fail
-Summary logged in /home/csetzer/Dropbox/sparkada2014/critsys2015/critsys2014/sect2g/example2g-15/gnatprove/gnatprove.out
-csetzer@csetzer-TECRA-R940:~/Dropbox/sparkada2014/critsys2015/critsys2014/sect2g/example2g-15> gps main.gpr &
+Summary logged in /home/csetzer/Dropbox/sparkada2014/critsys2015/critsys2014/sect2g/example6-15/gnatprove/gnatprove.out
+csetzer@csetzer-TECRA-R940:~/Dropbox/sparkada2014/critsys2015/critsys2014/sect2g/example6-15> gps main.gpr &
 [2] 11262
-csetzer@csetzer-TECRA-R940:~/Dropbox/sparkada2014/critsys2015/critsys2014/sect2g/example2g-15> Gtk-Message: Failed to load module "overlay-scrollbar"
+csetzer@csetzer-TECRA-R940:~/Dropbox/sparkada2014/critsys2015/critsys2014/sect2g/example6-15> Gtk-Message: Failed to load module "overlay-scrollbar"
 Gtk-Message: Failed to load module "unity-gtk-module"
 Gtk-Message: Failed to load module "canberra-gtk-module"
 
@@ -114,12 +114,12 @@ so please double check that the problem can still
 be reproduced with the set of files listed.
 Consider also -gnatd.n switch (see debug.adb).
 
-/home/csetzer/Dropbox/sparkada2014/critsys2015/critsys2014/sect2g/example2g-15/copy.adb
-/home/csetzer/Dropbox/sparkada2014/critsys2015/critsys2014/sect2g/example2g-15/my_files.ads
-/home/csetzer/Dropbox/sparkada2014/critsys2015/critsys2014/sect2g/example2g-15/spark.ads
-/home/csetzer/Dropbox/sparkada2014/critsys2015/critsys2014/sect2g/example2g-15/spark-text_io.ads
-/home/csetzer/Dropbox/sparkada2014/critsys2015/critsys2014/sect2g/example2g-15/spark-text_io-integer_io.ads
-/home/csetzer/Dropbox/sparkada2014/critsys2015/critsys2014/sect2g/example2g-15/my_number_io.ads
+/home/csetzer/Dropbox/sparkada2014/critsys2015/critsys2014/sect2g/example6-15/copy.adb
+/home/csetzer/Dropbox/sparkada2014/critsys2015/critsys2014/sect2g/example6-15/my_files.ads
+/home/csetzer/Dropbox/sparkada2014/critsys2015/critsys2014/sect2g/example6-15/spark.ads
+/home/csetzer/Dropbox/sparkada2014/critsys2015/critsys2014/sect2g/example6-15/spark-text_io.ads
+/home/csetzer/Dropbox/sparkada2014/critsys2015/critsys2014/sect2g/example6-15/spark-text_io-integer_io.ads
+/home/csetzer/Dropbox/sparkada2014/critsys2015/critsys2014/sect2g/example6-15/my_number_io.ads
 
 compilation abandoned
 gnatprove: error during flow analysis and proof

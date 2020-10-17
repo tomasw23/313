@@ -26,12 +26,12 @@ so please double check that the problem can still
 be reproduced with the set of files listed.
 Consider also -gnatd.n switch (see debug.adb).
 
-/home/csetzer/Dropbox/sparkada2014/critsys2015/critsys2014/sect2g/example2g-15/copy.adb
-/home/csetzer/Dropbox/sparkada2014/critsys2015/critsys2014/sect2g/example2g-15/my_files.ads
-/home/csetzer/Dropbox/sparkada2014/critsys2015/critsys2014/sect2g/example2g-15/spark.ads
-/home/csetzer/Dropbox/sparkada2014/critsys2015/critsys2014/sect2g/example2g-15/spark-text_io.ads
-/home/csetzer/Dropbox/sparkada2014/critsys2015/critsys2014/sect2g/example2g-15/spark-text_io-integer_io.ads
-/home/csetzer/Dropbox/sparkada2014/critsys2015/critsys2014/sect2g/example2g-15/my_number_io.ads
+/home/csetzer/Dropbox/sparkada2014/critsys2015/critsys2014/sect2g/example6-15/copy.adb
+/home/csetzer/Dropbox/sparkada2014/critsys2015/critsys2014/sect2g/example6-15/my_files.ads
+/home/csetzer/Dropbox/sparkada2014/critsys2015/critsys2014/sect2g/example6-15/spark.ads
+/home/csetzer/Dropbox/sparkada2014/critsys2015/critsys2014/sect2g/example6-15/spark-text_io.ads
+/home/csetzer/Dropbox/sparkada2014/critsys2015/critsys2014/sect2g/example6-15/spark-text_io-integer_io.ads
+/home/csetzer/Dropbox/sparkada2014/critsys2015/critsys2014/sect2g/example6-15/my_number_io.ads
 
 compilation abandoned
 gnatprove: error during flow analysis and proof

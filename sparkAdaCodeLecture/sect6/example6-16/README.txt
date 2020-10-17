@@ -1,8 +1,3 @@
-Extract of files from 
-~/Dropbox/sparkada2014/critsys2015/critsys2014/sect2g/example2g-15/
-(which are examples from the spark ada distribution)
-which are needed to check
-
 use_int_io.adb
 
 Error messages we get

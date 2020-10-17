@@ -1,4 +1,4 @@
-This is an adaption of sect2g/example2g-19 for testing
+This is an adaption of sect2g/example6-19 for testing
 whether the installation works and getting started.
 
 Download the files
