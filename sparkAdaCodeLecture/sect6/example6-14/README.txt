@@ -1,7 +1,7 @@
 These files are all from /usr/gnat/share/examples/spark/spark_io/
 of the distribution.
 It might actually be the 2014 version not the 2015 version.
-sect2g/example6-15/ contains the 2015 version
+sect6/example6-15/ contains the 2015 version
 
 They don't get through gnatprove, in it's original form,
 

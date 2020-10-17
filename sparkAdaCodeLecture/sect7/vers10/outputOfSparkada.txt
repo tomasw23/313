@@ -80,4 +80,4 @@ analyzing Simple_Railway.Print_One_Signal, 3 checks
 analyzing Simple_Railway.Print_One_Segment_State, 7 checks
 analyzing Simple_Railway.Print_State, 37 checks
 analyzing Simple_Railway.Get_Action, 20 checks
-Summary logged in /home/csetzer/Dropbox/sparkada2014/critsys2014/sect2h/vers10final/gnatprove/gnatprove.out
+Summary logged in /home/csetzer/Dropbox/sparkada2014/critsys2014/sect7/vers10final/gnatprove/gnatprove.out
