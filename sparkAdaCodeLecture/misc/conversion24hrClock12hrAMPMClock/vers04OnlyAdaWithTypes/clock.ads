@@ -3,9 +3,9 @@ pragma SPARK_Mode;
 
 package Clock is
    
-   type Hour is new Integer range 0 .. 23;
+   subtype Hour is Integer range 0 .. 23;
    
-   type Hour12 is new Integer range 0 .. 11;
+   subtype Hour12 is Integer range 0 .. 11;
    
    function To12 (T : Hour) return Hour12;
      
