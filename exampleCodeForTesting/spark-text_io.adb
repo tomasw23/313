@@ -1,7 +1,6 @@
 -- This is the file spark-text_io.adb from the distribution of SPARK ADa
--- /opt/spark2014/share/examples/spark/spark_io/
--- or
--- /usr/gnat/share/examples/spark/spark_io/
+-- /opt/GNAT/2018/share/examples/spark/spark-text_io.adb
+
 -- 
 -- with some minor changes carried out by Anton setzer
 -- so that it passes SPARK Ada 's check 
@@ -33,11 +32,11 @@
 
 pragma SPARK_Mode (Off);
 
--- with Ada.Exceptions;   -- Omitted by AGS
+-- with Ada.Exceptions;  -- Omitted by AGS
 
 package body SPARK.Text_IO is
    
-   -- Init_Standard_input, Init_Standard_Output,Init_Standard_Error
+      -- Init_Standard_input, Init_Standard_Output,Init_Standard_Error
    -- are new by AGS
    -- they do what the initialisation of the package did for 
    -- Standard_input, Standard_Output,Standard_Error
@@ -70,7 +69,7 @@ package body SPARK.Text_IO is
 	 pragma Warnings (On);
       end Init_Standard_Error;	 	 
       
-      
+
 
    function Status (File : File_Type) return File_Status is
      (File_Status (File.Status));
@@ -114,14 +113,15 @@ package body SPARK.Text_IO is
         (case File.Sort is
             when Std_Files => True,
             when A_File => Ada.Text_IO.Is_Open (File.File)));
-     
+
      --  AGS function Get_Standard_File    was moved deleted
      --      otherwise we get an error that it is not referenced.
---   function Get_Standard_File (Sort : Std_Files)
---                               return Ada.Text_IO.File_Type is
---     (case Sort is
---         when Std_In => Ada.Text_IO.Standard_Input,
---         when Std_Out => Ada.Text_IO.Standard_Output,
+     --  function Get_Standard_File (Sort : Std_Files)
+     --                            return Ada.Text_IO.File_Type is
+     --  (case Sort is
+     --      when Std_In => Ada.Text_IO.Standard_Input,
+     --      when Std_Out => Ada.Text_IO.Standard_Output,
+     --      when Std_Error => Ada.Text_IO.Standard_Error);
 
    procedure Create (The_File : in out File_Type;
                      The_Mode : in File_Mode := Out_File;
@@ -1081,11 +1081,15 @@ package body SPARK.Text_IO is
       when Ada.Text_IO.Device_Error => Standard_Output.Status := Device_Error;
    end Put_Line;
 
-   begin
-      -- Replaced by AGS by new Init_ procedures
-      Init_Standard_Input;
-      Init_Standard_Output;      
-      Init_Standard_Error;            
-      
+begin
+   --  Initialize the standard files
+   pragma Warnings (Off);
+   Standard_Input.Status  := Success;
+   Standard_Input.Sort    := Std_In;
+   Standard_Output.Status := Success;
+   Standard_Output.Sort   := Std_Out;
+   Standard_Error.Status  := Success;
+   Standard_Error.Sort    := Std_Error;
+   pragma Warnings (On);
 
-   end SPARK.Text_IO;
+end SPARK.Text_IO;
