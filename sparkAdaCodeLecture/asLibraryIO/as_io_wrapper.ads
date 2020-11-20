@@ -2,7 +2,6 @@
 pragma SPARK_Mode (On);
 
 
-
 -- This is a wrapper around spark.text_io and spark.text_IO.integer_Io;
 -- We pretend here that after initizlisation we can always read and write
 -- from standardP_input and _output.
@@ -16,7 +15,7 @@ pragma SPARK_Mode (On);
 -- functions named AS_Get* get input from the console
 
 with SPARK.Text_IO;
-use SPARK.Text_IO;
+use  SPARK.Text_IO;
 
 
 package AS_Io_Wrapper 

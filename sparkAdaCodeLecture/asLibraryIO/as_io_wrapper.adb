@@ -4,13 +4,13 @@ pragma SPARK_Mode (Off);
 -- with SPARK.Text_IO;
 -- use SPARK.Text_IO;
 with SPARK.Text_IO.Integer_IO;
-
+-- use  SPARK.Text_IO.Integer_IO;
 
 package body AS_IO_Wrapper is
    
    package Integer_IO is new SPARK.Text_IO.Integer_IO(Integer);
    use  Integer_IO; -- SPARK.Text_IO.Integer_IO (Integer)
-
+   
    
    procedure AS_Init_Standard_Input  is
    begin
