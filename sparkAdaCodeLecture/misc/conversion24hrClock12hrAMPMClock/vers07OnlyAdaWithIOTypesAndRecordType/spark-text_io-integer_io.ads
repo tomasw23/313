@@ -1,18 +1,3 @@
--- This is the file spark-text_io-integer_io.ads from the distribution of SPARK ADa
--- /opt/spark2014/share/examples/spark/spark_io/
--- or
--- /usr/gnat/share/examples/spark/spark_io/
--- 
--- with some minor changes carried out by Anton setzer
--- so that it can be used with  SPARK Ada 's check 
--- gnatprove -P main.gpr --proof=per_path
--- 
--- the main change was to replace the generic type Num 
--- by Integer
--- since we cannot call a generic package from SPARK Ada
---
-
-
 ------------------------------------------------------------------------------
 --                                                                          --
 --                           SPARK_IO EXAMPLES                              --
@@ -37,17 +22,16 @@
 --                                                                          --
 ------------------------------------------------------------------------------
 
-
--- type Num is range <>;
-
+generic
+  type Num is range <>;
 package SPARK.Text_IO.Integer_IO is
-   
-   Default_Width : constant Field := Integer'Width;
+
+   Default_Width : constant Field := Num'Width;
    Default_Base  : constant Number_Base := 10;
 
    type Integer_Result (Status : File_Status := Status_Error) is record
       case Status is
-         when Success => Item : Integer;
+         when Success => Item : Num;
          when others  => null;
       end case;
    end record;
@@ -65,7 +49,6 @@ package SPARK.Text_IO.Integer_IO is
    procedure Get (Item  : out Integer_Result;
                   Width : in  Field := 0)
      with Global => (In_Out => Standard_Input),
-          Depends=> ((Standard_Input,Item) => (Standard_Input,Width)),
           Post   => Is_Readable (Standard_Input) and
                     Name (Standard_Input) =
                        Name (Standard_Input)'Old and
@@ -74,7 +57,7 @@ package SPARK.Text_IO.Integer_IO is
                     Is_Standard_Input (Standard_Input);
 
    procedure Put (File  : in out File_Type;
-                  Item  : in Integer;
+                  Item  : in Num;
                   Width : in Field := Default_Width;
                   Base  : in Number_Base := Default_Base)
      with Global => null,
@@ -88,11 +71,10 @@ package SPARK.Text_IO.Integer_IO is
                   Page_Length (File) = Page_Length (File)'Old and
                   Is_Standard_File (File) = Is_Standard_File (File)'Old;
 
-   procedure Put (Item  : in Integer;
+   procedure Put (Item  : in Num;
                   Width : in Field := Default_Width;
                   Base  : in Number_Base := Default_Base)
      with Global => (In_Out => Standard_Output),
-          Depends=> (Standard_Output => (Item, Width, Base, Standard_Output)),
           Pre    => Status (Standard_Output) = Success,
           Post   => Is_Open (Standard_Output) and
                     Mode (Standard_Output) = Out_File and
@@ -109,14 +91,12 @@ package SPARK.Text_IO.Integer_IO is
    procedure Get (From   : in  String;
                   Item   : out Integer_Result;
                   Last   : out Positive)
-     with Global => null,
-          Depends => ((Item, Last) => From);
+     with Global => null;
 
    procedure Put (To     : out String;
-                  Item   : in Integer;
+                  Item   : in Num;
                   Base   : in Number_Base := Default_Base)
      with  Global => null,
-           Depends => (To => (Item, Base)),
-           Pre     => To'Length >= Integer'Image (Item)'Length;
+          Pre     => To'Length >= Num'Image (Item)'Length;
 
 end SPARK.Text_IO.Integer_IO;
