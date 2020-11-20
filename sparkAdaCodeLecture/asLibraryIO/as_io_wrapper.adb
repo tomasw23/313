@@ -5,6 +5,7 @@ pragma SPARK_Mode (Off);
 -- use SPARK.Text_IO;
 with SPARK.Text_IO.Integer_IO;
 -- use  SPARK.Text_IO.Integer_IO;
+with Ada.Strings.Fixed;
 
 package body AS_IO_Wrapper is
    
@@ -25,15 +26,14 @@ package body AS_IO_Wrapper is
    
    
 
-   --  procedure AS_Get (Item : out Character_Result) is
-   --  begin
-   --     --  loop
-   --     --  	 exit when Status (Standard_Input) = Success;
-   --     --  	 Put_Line (Standard_Error, "Error on Standard_Input");
-   --     --  end loop;
-   --     SPARK.Text_IO.Get(Item);
-   --  end AS_Get;      
-
+   procedure AS_Get (Item : out Character_Result) is
+   begin
+      --  loop
+      --  	 exit when Status (Standard_Input) = Success;
+      --  	 Put_Line (Standard_Error, "Error on Standard_Input");
+      --  end loop;
+      SPARK.Text_IO.Get(Item);
+   end AS_Get;      
    
    procedure AS_Put (Item : in  Character) is
    begin
@@ -95,11 +95,10 @@ package body AS_IO_Wrapper is
       As_Put_Line("");
    end As_Put_Line;
    
-   procedure AS_Get (Item  : out Integer; Prompt_Try_Again_When_Not_Integer : in String := "Please type in an integer; please try again") is
-      -- sometimes whenn running AS_Get(x) where x : Integer;
-      -- there is some strange error message, because something is still left in the buffer of user inputs.
-      -- Running As_Clear_Buffer before AS_Get(x)  allows to clear what's left in the current buffer and avoid this problem
-      
+   procedure AS_Get (Item  : out Integer; 
+		     Prompt_Try_Again_When_Not_Integer : in String := "Please type in an integer; please try again";
+		     Prompt_Try_Again_When_Empty_Input : in String := "Please enter a non-empty Number"
+		    ) is
       Length_String : constant Integer := 512;
       Input_By_User : String(1 .. Length_String);
       Converted_Result  : Integer_Result;
@@ -107,7 +106,11 @@ package body AS_IO_Wrapper is
       Length_Input_Used : Positive;
    begin
       loop
-	 SPARK.Text_IO.Get_Line(Input_By_User,Length_Input);
+	 loop
+	    SPARK.Text_IO.Get_Line(Input_By_User,Length_Input);
+	    exit when Length_Input >0 and Ada.Strings.Fixed.Index_Non_Blank(Input_By_User(1 .. Length_Input)) /= 0;	    
+	    SPARK.Text_IO.Put_Line(Prompt_Try_Again_When_Empty_Input);
+	 end loop;
 	 Get (Input_By_User(1 .. Length_Input) ,Converted_Result,Length_Input_Used);
 	 exit when Converted_Result.Status = Success and Length_Input_Used = Length_Input;
 	 SPARK.Text_IO.Put_Line(Prompt_Try_Again_When_Not_Integer);
@@ -118,13 +121,16 @@ package body AS_IO_Wrapper is
   
    procedure AS_Put  (Item : in  Integer) is
    begin
-      Put(Item);
+      Put (Item);      
+--    SPARK.Text_IO.Integer_IO.Put(Item);
    end AS_Put;
    
    
    procedure AS_Put_Line  (Item : in  Integer) is
    begin
-      Integer_IO.Put(Item);
+      Integer_IO.Put(Item);      
+--      SPARK.Text_IO.Get_Line (Item,Last);      
+--      SPARK.Text_IO.Integer_IO.Put(Item);
       AS_Put_Line;
    end AS_Put_Line;
 
