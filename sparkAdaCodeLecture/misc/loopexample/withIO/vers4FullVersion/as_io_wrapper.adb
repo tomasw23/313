@@ -5,6 +5,7 @@ pragma SPARK_Mode (Off);
 -- use SPARK.Text_IO;
 with SPARK.Text_IO.Integer_IO;
 -- use  SPARK.Text_IO.Integer_IO;
+with Ada.Strings.Fixed;
 
 package body AS_IO_Wrapper is
    
@@ -107,7 +108,7 @@ package body AS_IO_Wrapper is
       loop
 	 loop
 	    SPARK.Text_IO.Get_Line(Input_By_User,Length_Input);
-	    exit when Length_Input >0;
+	    exit when Length_Input >0 and Ada.Strings.Fixed.Index_Non_Blank(Input_By_User(1 .. Length_Input)) /= 0;	    
 	    SPARK.Text_IO.Put_Line(Prompt_Try_Again_When_Empty_Input);
 	 end loop;
 	 Get (Input_By_User(1 .. Length_Input) ,Converted_Result,Length_Input_Used);
