@@ -15,6 +15,8 @@ of the coursework.
 There are different versions which correspond to the different stages of 
 writing a program similar to the stages in the coursework.
 
+* The full version which uses subtypes instead of types is 
+  vers12FullVersionWithIOUsingSubType
 * All versions with IO in the name contain a main procedure which when 
     compiled allows to execute the code in a console.
   Otherwise the code can be compiled but needs to be linked from an 
@@ -32,6 +34,8 @@ writing a program similar to the stages in the coursework.
 * Versions with "Record type" make use of a record type.
 * Versions "without Range" mean that range conditions are not met but
   verification conditions are fulfilled otherwise.
+* Version vers12FullVersionWithIOUsingSubType uses instead of types subtypes
+  which  is easier to use. 
 
 Note a record occurs only in vers06 and vers07 - the later example refer
   vers08 .. vers11 extend examples in vers04 and vers05
