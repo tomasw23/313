@@ -1,18 +1,3 @@
--- This is the file spark-text_io-integer_io.adb from the distribution of SPARK ADa
--- /opt/spark2014/share/examples/spark/spark_io/
--- or
--- /usr/gnat/share/examples/spark/spark_io/
--- 
--- with some minor changes carried out by Anton setzer
--- so that it can be used with  SPARK Ada 's check 
--- gnatprove -P main.gpr --proof=per_path
--- 
--- the main change was to replace the generic type Num 
--- by Integer
--- since we cannot call a generic package from SPARK Ada
---
-
-
 ------------------------------------------------------------------------------
 --                                                                          --
 --                           SPARK_IO EXAMPLES                              --
@@ -40,12 +25,12 @@
 package body SPARK.Text_IO.Integer_IO
 is
 
-   package Ada_Integer_IO is new Ada.Text_IO.Integer_IO (Integer);
+   package Ada_Integer_IO is new Ada.Text_IO.Integer_IO (Num);
 
    procedure Get (File  : in out File_Type;
                   Item  : out Integer_Result;
                   Width : in Field := 0) is
-      Int : Integer;
+      Int : Num;
    begin
       case File.Sort is
          when Std_Out | Std_Error =>
@@ -80,7 +65,7 @@ is
 
    procedure Get (Item  : out Integer_Result;
                   Width : in  Field := 0) is
-      Int : Integer;
+      Int : Num;
    begin
       Ada_Integer_IO.Get (Ada.Text_IO.Standard_Input, Int, Width);
       Item := (Status => Success, Item => Int);
@@ -104,7 +89,7 @@ is
    end Get;
 
    procedure Put (File  : in out File_Type;
-                  Item  : in Integer;
+                  Item  : in Num;
                   Width : in Field := Default_Width;
                   Base  : in Number_Base := Default_Base) is
    begin
@@ -130,7 +115,7 @@ is
    end Put;
 
 
-   procedure Put (Item  : in Integer;
+   procedure Put (Item  : in Num;
                   Width : in Field := Default_Width;
                   Base  : in Number_Base := Default_Base) is
    begin
@@ -148,7 +133,7 @@ is
    procedure Get (From   : in  String;
                   Item   : out Integer_Result;
                   Last   : out Positive) is
-      Int : Integer;
+      Int : Num;
    begin
       Ada_Integer_IO.Get (From, Int, Last);
       Item := (Status => Success, Item => Int);
@@ -159,7 +144,7 @@ is
    end Get;
 
    procedure Put (To     : out String;
-                  Item   : in Integer;
+                  Item   : in Num;
                   Base   : in Number_Base := Default_Base) renames
      Ada_Integer_IO.Put;
 

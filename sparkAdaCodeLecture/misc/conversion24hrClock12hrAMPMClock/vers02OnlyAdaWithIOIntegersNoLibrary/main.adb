@@ -8,8 +8,12 @@ procedure Main is
    Last : Integer;
 begin
    loop
-      Put("Enter a number in hour from 0 .. 23: ");   
-      Get(T);
+      loop
+	 Put("Enter a number in hour from 0 .. 23: ");   
+	 Get(T);
+	 exit when T in 0 .. 23;
+	 Put_Line("Please Enter a number between 0 and 23");
+      end loop;
       Put("The result of the function  is ");
       Put(To12(T));
       New_Line;   

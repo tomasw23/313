@@ -1,11 +1,3 @@
--- This is the file spark.ads from the distribution of SPARK ADa
--- /opt/spark2014/share/examples/spark/spark_io/
--- or
--- /usr/gnat/share/examples/spark/spark_io/
--- 
--- I assume apart from this comment now changes were made.
-
-
 ------------------------------------------------------------------------------
 --                                                                          --
 --                           SPARK_IO EXAMPLES                              --
@@ -58,7 +50,7 @@ package SPARK is
                         Data_Error,
                         Layout_Error);
 
-   type Text_IO_File_Type is limited private;
+   type Text_IO_File_Type is limited private with Default_Initial_Condition;
 
 private
    pragma SPARK_Mode (Off);
