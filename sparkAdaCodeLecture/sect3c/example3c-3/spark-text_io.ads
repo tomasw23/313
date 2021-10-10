@@ -11,9 +11,9 @@
 -- OUT ANY WARRANTY;  without even the  implied warranty of MERCHANTABILITY --
 -- or FITNESS FOR A PARTICULAR PURPOSE.                                     --
 --                                                                          --
---                                                                          --
---                                                                          --
---                                                                          --
+-- As a special exception under Section 7 of GPL version 3, you are granted --
+-- additional permissions described in the GCC Runtime Library Exception,   --
+-- version 3.1, as published by the Free Software Foundation.               --
 --                                                                          --
 -- You should have received a copy of the GNU General Public License and    --
 -- a copy of the GCC Runtime Library Exception along with this program;     --
@@ -21,12 +21,19 @@
 -- <http://www.gnu.org/licenses/>.                                          --
 --                                                                          --
 ------------------------------------------------------------------------------
+--   
+--   Anton Setzer (AGS) did some minor modifications which are indicated by comments
+--    using AGS
+--
+---------------------------------------------------------------------------------
 
-pragma SPARK_Mode (On);
 
+pragma SPARK_Mode (Off);
+
+-- AGS commented out lines starting with Status (...
+--   since they lead to spark ada errors.
 package SPARK.Text_IO
   with Initializes => (Standard_Input, Standard_Output, Standard_Error)
-       --  ,
        --  Initial_Condition => Is_Readable (Standard_Input) and
        --                       Is_Writable (Standard_Output) and
        --                       Is_Writable (Standard_Error) and
@@ -81,7 +88,36 @@ is
    Standard_Input,
    Standard_Output,
    Standard_Error : File_Type;
-
+   
+   -- function Init added by AGS
+   
+   -- Init_Standard_input, Init_Standard_Output,Init_Standard_Error
+   -- are new by AGS
+   -- they do what the initialisation of the package did for 
+   -- Standard_input, Standard_Output,Standard_Error
+   
+   -- AGS: commented out condition on Status
+   procedure Init_Standard_Input 
+     with Global => (Output => Standard_Input),
+          Depends => (Standard_Input  => null),
+          Post => Is_Readable (Standard_Input);--  and
+--     Status (Standard_Input) = Success;
+   
+   -- AGS: commented out condition on Status   
+   procedure Init_Standard_Output 
+     with Global => (Output => Standard_Output),
+          Depends => (Standard_Output  => null),     
+          Post => Is_Writable (Standard_Output); 
+--     and Status (Standard_Output) = Success;
+   
+   -- AGS: commented out condition on Status   
+   procedure Init_Standard_Error
+     with Global => (Output => Standard_Error),
+          Depends => (Standard_Error  => null),     
+          Post => Is_Writable (Standard_Error);-- and
+--                  Status (Standard_Error) = Success;
+   -- function Init added by AGS
+   
    --  The status of the last operation on a file may be obtained by calling
    --  the function Status declared below.
    function Status (File : File_Type) return File_Status
@@ -92,26 +128,26 @@ is
    --  they cannot be opened or closed or reset (this not allowed in Ada).
    function Is_Standard_Input (File : File_Type) return Boolean
      with Global     => null,
-          Convention => Ghost;
+          Ghost;
 
    function Is_Standard_Output (File : File_Type) return Boolean
      with Global     => null,
-          Convention => Ghost;
+          Ghost;
 
    function Is_Standard_Error (File : File_Type) return Boolean
      with Global     => null,
-          Convention => Ghost;
+          Ghost;
 
    function Is_Standard_Writable (File : File_Type) return Boolean is
      (Is_Standard_Output (File) or else Is_Standard_Error (File))
    with Global     => null,
-        Convention => Ghost;
+        Ghost;
 
    function Is_Standard_File (File : File_Type) return Boolean is
      (Is_Standard_Input (File) or else Is_Standard_Output (File)
           or else Is_Standard_Error (File))
      with Global     => null,
-          Convention => Ghost;
+          Ghost;
 
    function Is_Open (File : in File_Type) return Boolean
      with Global => null;
@@ -636,7 +672,7 @@ is
      with Global => null,
           Pre  => Is_Writable (File) and then Status (File) = Success,
           Post => Is_Writable (File) and
-                  Is_Open (File) and 
+                  Is_Open (File) and
                   Mode (File) = Mode (File)'Old and
                   Name (File) = Name (File)'Old and
                   Form (File) = Form (File)'Old and

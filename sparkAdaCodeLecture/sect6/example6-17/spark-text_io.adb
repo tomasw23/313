@@ -1,9 +1,3 @@
--- This is the file spark-text_io.adb from the distribution of SPARK ADa
--- /opt/spark2014/share/examples/spark/spark_io/
--- with some minor changes marked by AGS 
--- so that it passes SPARK Ada 's check 
--- gnatprove -P main.gpr --proof=per_path
-
 ------------------------------------------------------------------------------
 --                                                                          --
 --                           SPARK_IO EXAMPLES                              --
@@ -17,9 +11,9 @@
 -- OUT ANY WARRANTY;  without even the  implied warranty of MERCHANTABILITY --
 -- or FITNESS FOR A PARTICULAR PURPOSE.                                     --
 --                                                                          --
---                                                                          --
---                                                                          --
---                                                                          --
+-- As a special exception under Section 7 of GPL version 3, you are granted --
+-- additional permissions described in the GCC Runtime Library Exception,   --
+-- version 3.1, as published by the Free Software Foundation.               --
 --                                                                          --
 -- You should have received a copy of the GNU General Public License and    --
 -- a copy of the GCC Runtime Library Exception along with this program;     --
@@ -27,29 +21,54 @@
 -- <http://www.gnu.org/licenses/>.                                          --
 --                                                                          --
 ------------------------------------------------------------------------------
+--   
+--   Anton Setzer (AGS) did some minor modifications which are indicated by comments
+--    using AGS
+--
+---------------------------------------------------------------------------------
 
 pragma SPARK_Mode (Off);
 
--- with Ada.Exceptions;   -- Omitted by AGS
+-- with Ada.Exceptions;
 
 package body SPARK.Text_IO is
+   
+   -- Init_Standard_input, Init_Standard_Output,Init_Standard_Error
+   -- are new by AGS
+   -- they do what the initialisation of the package did for 
+   -- Standard_input, Standard_Output,Standard_Error
+   procedure Init_Standard_Input is
+      begin
+	 --  Initialize the standard files
+	 pragma Warnings (Off);
+	 Standard_Input.Status  := Success;
+	 Standard_Input.Sort    := Std_In;
+	 pragma Warnings (On);
+      end Init_Standard_Input;
+      
+      
+   procedure Init_Standard_Output is
+      begin
+	 --  Initialize the standard files
+	 pragma Warnings (Off);
+	 Standard_Output.Status := Success;
+	 Standard_Output.Sort   := Std_Out;
+	 pragma Warnings (On);
+      end Init_Standard_Output;	 
+      
+      
+   procedure Init_Standard_Error is
+      begin
+	 --  Initialize the standard files
+	 pragma Warnings (Off);
+	 Standard_Error.Status  := Success;
+	 Standard_Error.Sort    := Std_Error;
+	 pragma Warnings (On);
+      end Init_Standard_Error;	 	 
+   
 
    function Status (File : File_Type) return File_Status is
-      begin
-      if (Is_Standard_Input(File)) 
-      then return Success; 
-      else
-	 if (Is_Standard_Output(File)) 
-	 then return Success; 
-	 else
-	    if (Is_Standard_Error(File)) 
-	    then return Success; 
-	    else 
-             return File_Status (File.Status);
-	   end if;
-	 end if;
-      end if;
-      end  Status;
+     (File_Status (File.Status));
 
    function Is_Standard_Input (File : File_Type) return Boolean is
       (File.Sort = Std_In);
@@ -90,17 +109,13 @@ package body SPARK.Text_IO is
         (case File.Sort is
             when Std_Files => True,
             when A_File => Ada.Text_IO.Is_Open (File.File)));
-     
-     
-     --  AGS function Get_Standard_File    was moved deleted
-     --      otherwise we get an error that it is not referenced.
---   function Get_Standard_File (Sort : Std_Files)
---                               return Ada.Text_IO.File_Type is
---     (case Sort is
---         when Std_In => Ada.Text_IO.Standard_Input,
---         when Std_Out => Ada.Text_IO.Standard_Output,
---
---         when Std_Error => Ada.Text_IO.Standard_Error);
+
+   --  function Get_Standard_File (Sort : Std_Files)
+   --                              return Ada.Text_IO.File_Type is
+   --    (case Sort is
+   --        when Std_In => Ada.Text_IO.Standard_Input,
+   --        when Std_Out => Ada.Text_IO.Standard_Output,
+   --        when Std_Error => Ada.Text_IO.Standard_Error);
 
    procedure Create (The_File : in out File_Type;
                      The_Mode : in File_Mode := Out_File;

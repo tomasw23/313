@@ -1,20 +1,3 @@
--- This is the file spark-text_io.ads from the distribution of SPARK ADa
--- /opt/GNAT/2018/share/examples/spark/spark-text_io.ads
--- 
--- with some minor changes carried out by Anton Setzer
--- so that it passes SPARK Ada 's check 
--- gnatprove -P main.gpr --proof=per_path
--- 
--- furthermore for standard input operations some dependency clauses
--- have been added.
--- the addition of such clauses is yet incomplete, since Anton Setzer
--- is now accessing this file via a wrapper package
--- 
--- as_io_wrapper.ads and as_io_wrapper.adb
---
--- which contains proper dependency clauses
---
---
 ------------------------------------------------------------------------------
 --                                                                          --
 --                           SPARK_IO EXAMPLES                              --
@@ -28,9 +11,9 @@
 -- OUT ANY WARRANTY;  without even the  implied warranty of MERCHANTABILITY --
 -- or FITNESS FOR A PARTICULAR PURPOSE.                                     --
 --                                                                          --
---                                                                          --
---                                                                          --
---                                                                          --
+-- As a special exception under Section 7 of GPL version 3, you are granted --
+-- additional permissions described in the GCC Runtime Library Exception,   --
+-- version 3.1, as published by the Free Software Foundation.               --
 --                                                                          --
 -- You should have received a copy of the GNU General Public License and    --
 -- a copy of the GCC Runtime Library Exception along with this program;     --
@@ -38,19 +21,25 @@
 -- <http://www.gnu.org/licenses/>.                                          --
 --                                                                          --
 ------------------------------------------------------------------------------
+--   
+--   Anton Setzer (AGS) did some minor modifications which are indicated by comments
+--    using AGS
+--
+---------------------------------------------------------------------------------
 
-pragma SPARK_Mode (On);
+
+pragma SPARK_Mode (Off);
 
 -- AGS commented out lines starting with Status (...
 --   since they lead to spark ada errors.
 package SPARK.Text_IO
   with Initializes => (Standard_Input, Standard_Output, Standard_Error)
---       Initial_Condition => Is_Readable (Standard_Input) and
---                            Is_Writable (Standard_Output) and
---                            Is_Writable (Standard_Error)
---                            Status (Standard_Input) = Success and
---                            Status (Standard_Output) = Success and
---                            Status (Standard_Error) = Success
+       --  Initial_Condition => Is_Readable (Standard_Input) and
+       --                       Is_Writable (Standard_Output) and
+       --                       Is_Writable (Standard_Error) and
+       --                       Status (Standard_Input) = Success and
+       --                       Status (Standard_Output) = Success and
+       --                       Status (Standard_Error) = Success
 is
    type File_Type   is new SPARK.Text_IO_File_Type;
    type File_Status is new SPARK.File_Status;
@@ -89,8 +78,7 @@ is
          when others => null;
       end case;
    end record;
-   
-   
+
    --  Standard_Input, Standard_Output and Standard_Error are variables because
    --  many of the file operations now have an in out parameter for the file.
    --  The variables cannot be directly altered, copied or compared as they
@@ -100,8 +88,6 @@ is
    Standard_Input,
    Standard_Output,
    Standard_Error : File_Type;
-   
-
    
    -- function Init added by AGS
    
@@ -130,11 +116,10 @@ is
           Depends => (Standard_Error  => null),     
           Post => Is_Writable (Standard_Error);-- and
 --                  Status (Standard_Error) = Success;
+   -- function Init added by AGS
    
-
    --  The status of the last operation on a file may be obtained by calling
    --  the function Status declared below.
-
    function Status (File : File_Type) return File_Status
      with Global => null;
 
@@ -166,7 +151,6 @@ is
 
    function Is_Open (File : in File_Type) return Boolean
      with Global => null;
-   
 
    function Mode (File : in File_Type) return File_Mode
      with Global => null,
@@ -182,97 +166,88 @@ is
    function Form (File : in File_Type) return String
      with Global => null,
           Pre    => Is_Open (File);
-   
-   -- AGS commented out in the following
+
    function Is_Readable (File : File_Type) return Boolean is
-     (Is_Open (File)) -- and then Mode (File) = In_File)
+     (Is_Open (File) and then Mode (File) = In_File)
      with Global => null;
-     
-   -- AGS commented out in the following     
+
    function Is_Writable (File : File_Type) return Boolean is
-     (Is_Open (File))-- and then
---          (Mode (File) = Out_File or else Mode (File) = Append_File))
+     (Is_Open (File) and then
+          (Mode (File) = Out_File or else Mode (File) = Append_File))
      with Global => null;
 
    --  Cannot be used with Standard Input, Output or Error as these are already
    --  open. The precondition guards against this.
-     
-     -- AGS commented out Post condition
    procedure Create (The_File : in out File_Type;
                      The_Mode : in  File_Mode := Out_File;
                      The_Name : in  String    := "";
                      The_Form : in  String    := "")
      with
        Global => null,
-       Pre  => not Is_Open (The_File);
-       --  Post => (if Status (The_File) = Success then
-       --                 Mode (The_File) = The_Mode and
-       --                 Name (The_File) = The_Name and
-       --                 Form (The_File) = The_Form and
-       --                 Is_Open (The_File) and
-       --                 Line_Length (The_File) = 0 and
-       --                 Page_Length (The_File) = 0 and
-       --                 not Is_Standard_File (The_File)
-       --           else
-       --              not Is_Open (The_File));
+       Pre  => not Is_Open (The_File),
+       Post => (if Status (The_File) = Success then
+                      Mode (The_File) = The_Mode and
+                      Name (The_File) = The_Name and
+                      Form (The_File) = The_Form and
+                      Is_Open (The_File) and
+                      Line_Length (The_File) = 0 and
+                      Page_Length (The_File) = 0 and
+                      not Is_Standard_File (The_File)
+                else
+                   not Is_Open (The_File));
 
    --  Cannot be used with Standard Input, Output or Error as these are already
    --  open.  The precondition guards against this.
-   -- AGS commented out Post condition   
    procedure Open (The_File : in out File_Type;
                    The_Mode : in  File_Mode;
                    The_Name : in  String;
                    The_Form : in  String := "")
      with
        Global => null,
-       Pre  => not Is_Open (The_File);
-       --  Post => (if Status (The_File) = Success then
-       --                 Mode (The_File) = The_Mode and
-       --                 Name (The_File) = The_Name and
-       --                 Form (The_File) = The_Form and
-       --                 Is_Open (The_File) and
-       --                 Line_Length (The_File) = 0 and
-       --                 Page_Length (The_File) = 0 and
-       --                 not Is_Standard_File (The_File)
-       --            else
-       --               not Is_Open (The_File));
-   
-   -- AGS commented out Post condition   
+       Pre  => not Is_Open (The_File),
+       Post => (if Status (The_File) = Success then
+                      Mode (The_File) = The_Mode and
+                      Name (The_File) = The_Name and
+                      Form (The_File) = The_Form and
+                      Is_Open (The_File) and
+                      Line_Length (The_File) = 0 and
+                      Page_Length (The_File) = 0 and
+                      not Is_Standard_File (The_File)
+                 else
+                    not Is_Open (The_File));
+
    procedure Close (File : in out File_Type)
      with
        Global => null,
-       Pre  => Is_Open (File) and not Is_Standard_File (File);
---       Post => (if Status (File) = Success then not Is_Open (File));
-   
-   -- AGS commented out Post condition      
+       Pre  => Is_Open (File) and not Is_Standard_File (File),
+       Post => (if Status (File) = Success then not Is_Open (File));
+
    procedure Delete (File : in out File_Type)
      with
        Global => null,
-       Pre  => Is_Open (File) and not Is_Standard_File (File);
---       Post => (if Status (File) = Success then not Is_Open (File));
-   
-   -- AGS commented out Post condition      
+       Pre  => Is_Open (File) and not Is_Standard_File (File),
+       Post => (if Status (File) = Success then not Is_Open (File));
+
    procedure Reset (File : in out File_Type; The_Mode : in File_Mode)
      with
        Global => null,
-       Pre  => Is_Open (File) and not Is_Standard_File (File);
-       --  Post => (if Status (File) = Success then
-       --             Mode (File) = The_Mode and
-       --             Is_Open (File)) and
-       --           Name (File) = Name (File)'Old and
-       --           Form (File) = Form (File)'Old and
-       --           not Is_Standard_File (File);
-   
-   -- AGS commented out Post condition         
+       Pre  => Is_Open (File) and not Is_Standard_File (File),
+       Post => (if Status (File) = Success then
+                  Mode (File) = The_Mode and
+                  Is_Open (File)) and
+                Name (File) = Name (File)'Old and
+                Form (File) = Form (File)'Old and
+                not Is_Standard_File (File);
+
    procedure Reset (File : in out File_Type)
      with
        Global => null,
        Pre  => Is_Open (File) and then not Is_Standard_File (File),
-       Post => Is_Open (File);
-       --          Mode (File) = Mode (File)'Old and
-       --          Name (File) = Name (File)'Old and
-       --          Form (File) = Form (File)'Old and
-       --          not Is_Standard_File (File);
+       Post => Is_Open (File) and
+               Mode (File) = Mode (File)'Old and
+               Name (File) = Name (File)'Old and
+               Form (File) = Form (File)'Old and
+               not Is_Standard_File (File);
 
    --  The functions Standard_Input, Standard_Output and Standard_Error
    --  have been replaced by variables.
@@ -283,85 +258,79 @@ is
    --  and Standard_Error.
 
    --  Buffer control
-   
-   -- AGS commented out in Post condition         
+
    procedure Flush (File : in out File_Type)
      with Global => null,
           Pre  => Is_Writable (File),
           Post => Is_Open (File) and
-                  --  Mode (File) = Mode (File)'Old and
---                  Name (File) = Name (File)'Old and
---                  Form (File) = Form (File)'Old and
---                  Line_Length (File) = Line_Length (File)'Old and
---                  Page_Length (File) = Page_Length (File)'Old and
+                  Mode (File) = Mode (File)'Old and
+                  Name (File) = Name (File)'Old and
+                  Form (File) = Form (File)'Old and
+                  Line_Length (File) = Line_Length (File)'Old and
+                  Page_Length (File) = Page_Length (File)'Old and
                   Is_Standard_File (File) = Is_Standard_File (File)'Old;
-		  
-   -- AGS commented out in Post condition         		  
+
    procedure Flush
      with Global => (In_Out => Standard_Output),
           Post   => Is_Open (Standard_Output) and
---                    Mode (Standard_Output) = Out_File and
---                    Name (Standard_Output) =
---                       Name (Standard_Output)'Old and
---                    Form (Standard_Output) =
---                       Form (Standard_Output)'Old and
---                    Line_Length (Standard_Output) =
---                       Line_Length (Standard_Output)'Old and
---                    Page_Length (Standard_Output) =
---                       Page_Length (Standard_Output)'Old and
+                    Mode (Standard_Output) = Out_File and
+                    Name (Standard_Output) =
+                       Name (Standard_Output)'Old and
+                    Form (Standard_Output) =
+                       Form (Standard_Output)'Old and
+                    Line_Length (Standard_Output) =
+                       Line_Length (Standard_Output)'Old and
+                    Page_Length (Standard_Output) =
+                       Page_Length (Standard_Output)'Old and
                     Is_Standard_Output (Standard_Output);
 
    --  Specification of line and page lengths
-   
-      -- AGS commented out Post condition      
+
    procedure Set_Line_Length (File : in out File_Type; To : in Count)
      with Global => null,
-          Pre  => Is_Writable (File);
---          Post => (if Status (File) = Success then Line_Length (File) = To) and
-                   --  Is_Open (File) and
-                   --  Mode (File) = Mode (File)'Old and
-                   --  Name (File) = Name (File)'Old and
-                   --  Form (File) = Form (File)'Old and
-                   --  Page_Length (File) = Page_Length (File)'Old and
-                   --  Is_Standard_File (File) = Is_Standard_File (File)'Old;
-   
-   -- AGS commented out Post condition         
-   procedure Set_Line_Length (To : in Count)
-     with Global => (In_Out => Standard_Output);
-          --  Post   => (if Status (Standard_Output) = Success then
-          --                Line_Length (Standard_Output) = To) and
-          --            Is_Open (Standard_Output) and
-          --            Mode (Standard_Output) = In_File and
-          --            Name (Standard_Output) = Name (Standard_Output)'Old and
-          --            Form (Standard_Output) = Form (Standard_Output)'Old and
-          --            Page_Length (Standard_Output) =
-          --            Page_Length (Standard_Output)'Old and
-          --            Is_Standard_Output (Standard_Output);
+          Pre  => Is_Writable (File),
+          Post => (if Status (File) = Success then Line_Length (File) = To) and
+                   Is_Open (File) and
+                   Mode (File) = Mode (File)'Old and
+                   Name (File) = Name (File)'Old and
+                   Form (File) = Form (File)'Old and
+                   Page_Length (File) = Page_Length (File)'Old and
+                   Is_Standard_File (File) = Is_Standard_File (File)'Old;
 
-   
-   -- AGS commented out Post condition         
+   procedure Set_Line_Length (To : in Count)
+     with Global => (In_Out => Standard_Output),
+          Post   => (if Status (Standard_Output) = Success then
+                        Line_Length (Standard_Output) = To) and
+                    Is_Open (Standard_Output) and
+                    Mode (Standard_Output) = In_File and
+                    Name (Standard_Output) = Name (Standard_Output)'Old and
+                    Form (Standard_Output) = Form (Standard_Output)'Old and
+                    Page_Length (Standard_Output) =
+                    Page_Length (Standard_Output)'Old and
+                    Is_Standard_Output (Standard_Output);
+
+
    procedure Set_Page_Length (File : in out File_Type; To : in Count)
      with Global => null,
-          Pre  => Is_Writable (File);
-          --  Post => (if Status (File) = Success then Page_Length (File) = To) and
-          --          Is_Open (File) and Mode (File) = Mode (File)'Old and
-          --          Name (File) = Name (File)'Old and
-          --          Form (File) = Form (File)'Old and
-          --          Line_Length (File) = Line_Length (File)'Old and
-          --          Is_Standard_File (File) = Is_Standard_File (File)'Old;
-   
-   -- AGS commented out Post condition         
+          Pre  => Is_Writable (File),
+          Post => (if Status (File) = Success then Page_Length (File) = To) and
+                  Is_Open (File) and Mode (File) = Mode (File)'Old and
+                  Name (File) = Name (File)'Old and
+                  Form (File) = Form (File)'Old and
+                  Line_Length (File) = Line_Length (File)'Old and
+                  Is_Standard_File (File) = Is_Standard_File (File)'Old;
+
    procedure Set_Page_Length (To : in Count)
-     with Global => (In_Out => Standard_Output);
-          --  Post   => (if Status (Standard_Output) = Success then
-          --               Page_Length (Standard_Output) = To) and
-          --            Is_Open (Standard_Output) and
-          --            Mode (Standard_Output) = Out_File and
-          --            Name (Standard_Output) = Name (Standard_Output)'Old and
-          --            Form (Standard_Output) = Form (Standard_Output)'Old and
-          --            Line_Length (Standard_Output) =
-          --               Line_Length (Standard_Output)'Old and
-          --            Is_Standard_Output (Standard_Output);
+     with Global => (In_Out => Standard_Output),
+          Post   => (if Status (Standard_Output) = Success then
+                       Page_Length (Standard_Output) = To) and
+                    Is_Open (Standard_Output) and
+                    Mode (Standard_Output) = Out_File and
+                    Name (Standard_Output) = Name (Standard_Output)'Old and
+                    Form (Standard_Output) = Form (Standard_Output)'Old and
+                    Line_Length (Standard_Output) =
+                       Line_Length (Standard_Output)'Old and
+                    Is_Standard_Output (Standard_Output);
 
    function  Line_Length (File : in File_Type) return Count
      with Global => null,
@@ -378,52 +347,48 @@ is
      with Global => Standard_Output;
 
    --  Column, Line, and Page Control
-   
-   -- AGS commented out in Post condition            
+
    procedure New_Line   (File    : in out File_Type;
                          Spacing : in Positive_Count := 1)
      with Global => null,
           Pre  => Is_Writable (File),
-          Post => Is_Open (File) and -- Mode (File) = Mode (File)'Old and
---                  Name (File) = Name (File)'Old and
---                  Form (File) = Form (File)'Old and
---                  Line_Length (File) = Line_Length (File)'Old and
---                  Page_Length (File) = Page_Length (File)'Old and
+          Post => Is_Open (File) and Mode (File) = Mode (File)'Old and
+                  Name (File) = Name (File)'Old and
+                  Form (File) = Form (File)'Old and
+                  Line_Length (File) = Line_Length (File)'Old and
+                  Page_Length (File) = Page_Length (File)'Old and
                   Is_Standard_File (File) = Is_Standard_File (File)'Old;
-   
-   -- AGS commented out in Post condition            
+
    procedure New_Line   (Spacing : in Positive_Count := 1)
      with Global => (In_Out => Standard_Output),
           Post   => Is_Open (Standard_Output) and
---                    Mode (Standard_Output) = Out_File and
---                    Name (Standard_Output) =
---                       Name (Standard_Output)'Old and
---                    Form (Standard_Output) =
---                       Form (Standard_Output)'Old and
---                    Line_Length (Standard_Output) =
---                       Line_Length (Standard_Output)'Old and
---                    Page_Length (Standard_Output) =
---                       Page_Length (Standard_Output)'Old and
+                    Mode (Standard_Output) = Out_File and
+                    Name (Standard_Output) =
+                       Name (Standard_Output)'Old and
+                    Form (Standard_Output) =
+                       Form (Standard_Output)'Old and
+                    Line_Length (Standard_Output) =
+                       Line_Length (Standard_Output)'Old and
+                    Page_Length (Standard_Output) =
+                       Page_Length (Standard_Output)'Old and
                     Is_Standard_Output (Standard_Output);
 
-   -- AGS commented out in Post condition            
    procedure Skip_Line  (File    : in out File_Type;
                          Spacing : in Positive_Count := 1)
      with Global => null,
           Pre  => Is_Readable (File) and then not End_Of_File (File),
           Post => Is_Readable (File) and
---                  Name (File) = Name (File)'Old and
---                  Form (File) = Form (File)'Old and
+                  Name (File) = Name (File)'Old and
+                  Form (File) = Form (File)'Old and
                   Is_Standard_File (File) = Is_Standard_File (File)'Old;
-   
-   -- AGS commented out in Post condition            
+
    procedure Skip_Line  (Spacing : in Positive_Count := 1)
      with Global => (In_Out => Standard_Input),
-          Pre    => Is_Readable (Standard_Input), -- and then
---                    not End_Of_File,
+          Pre    => Is_Readable (Standard_Input) and then
+                    not End_Of_File,
           Post   => Is_Readable (Standard_Input) and
---                    Name (Standard_Input) = Name (Standard_Input)'Old and
---                    Form (Standard_Input) = Form (Standard_Input)'Old and
+                    Name (Standard_Input) = Name (Standard_Input)'Old and
+                    Form (Standard_Input) = Form (Standard_Input)'Old and
                     Is_Standard_Input (Standard_Input);
 
    function  End_Of_Line (File : in File_Type) return Boolean
@@ -432,48 +397,46 @@ is
 
    function  End_Of_Line return Boolean
      with Global => Standard_Input;
-   
-   -- AGS commented out in Post condition            
+
    procedure New_Page   (File : in out File_Type)
      with Global => null,
           Pre  => Is_Writable (File),
-          Post => Is_Open (File) and -- Mode (File) = Mode (File)'Old and
---                  Name (File) = Name (File)'Old and
---                  Form (File) = Form (File)'Old and
---                  Line_Length (File) = Line_Length (File)'Old and
---                  Page_Length (File) = Page_Length (File)'Old and
+          Post => Is_Open (File) and Mode (File) = Mode (File)'Old and
+                  Name (File) = Name (File)'Old and
+                  Form (File) = Form (File)'Old and
+                  Line_Length (File) = Line_Length (File)'Old and
+                  Page_Length (File) = Page_Length (File)'Old and
                   Is_Standard_File (File) = Is_Standard_File (File)'Old;
-   
-  -- AGS commented out in Post condition         
+
    procedure New_Page
      with Global => (In_Out => Standard_Output),
           Post   => Is_Open (Standard_Output) and
---                    Mode (Standard_Output) = Out_File and
---                    Name (Standard_Output) =
---                       Name (Standard_Output)'Old and
---                    Form (Standard_Output) =
---                       Form (Standard_Output)'Old and
---                    Line_Length (Standard_Output) =
---                       Line_Length (Standard_Output)'Old and
---                    Page_Length (Standard_Output) =
---                       Page_Length (Standard_Output)'Old and
+                    Mode (Standard_Output) = Out_File and
+                    Name (Standard_Output) =
+                       Name (Standard_Output)'Old and
+                    Form (Standard_Output) =
+                       Form (Standard_Output)'Old and
+                    Line_Length (Standard_Output) =
+                       Line_Length (Standard_Output)'Old and
+                    Page_Length (Standard_Output) =
+                       Page_Length (Standard_Output)'Old and
                     Is_Standard_Output (Standard_Output);
 
    procedure Skip_Page  (File : in out File_Type)
      with Global => null,
           Pre  => Is_Readable (File) and then not End_Of_File (File),
           Post => Is_Readable (File) and
---                  Name (File) = Name (File)'Old and
---                  Form (File) = Form (File)'Old and
+                  Name (File) = Name (File)'Old and
+                  Form (File) = Form (File)'Old and
                   Is_Standard_File (File) = Is_Standard_File (File)'Old;
 
    procedure Skip_Page
      with Global => (In_Out => Standard_Input),
-          Pre    => Is_Readable (Standard_Input),-- and then
---                    not End_Of_File,
+          Pre    => Is_Readable (Standard_Input) and then
+                    not End_Of_File,
           Post   => Is_Readable (Standard_Input) and
---                    Name (Standard_Input) = Name (Standard_Input)'Old and
---                    Form (Standard_Input) = Form (Standard_Input)'Old and
+                    Name (Standard_Input) = Name (Standard_Input)'Old and
+                    Form (Standard_Input) = Form (Standard_Input)'Old and
                     Is_Standard_Input (Standard_Input);
 
    function  End_Of_Page (File : in File_Type) return Boolean
@@ -490,74 +453,70 @@ is
    function  End_Of_File return Boolean
      with Global => Standard_Input,
           Post   => End_Of_File'Result = End_Of_File (Standard_Input);
-   
-   -- AGS commented out Pre and Post condition         
+
    procedure Set_Col (File : in out File_Type; To : in Positive_Count)
-     with Global => null;
---          Pre  => (if Is_Writable (File) and then Line_Length (File) > 0 then
---                       To <= Line_Length (File)
---                   elsif Is_Readable (File) then not End_Of_File (File));
-          --  Post => (if Status (File) = Success then
-          --             Col (File) = (Success, To)) and
-          --           Is_Open (File) and Mode (File) = Mode (File)'Old and
-          --           Is_Readable (File)  = Is_Readable (File)'Old and
-          --           Name (File) = Name (File)'Old and
-          --           Form (File) = Form (File)'Old and
-          --           Line_Length (File) = Line_Length (File)'Old and
-          --           Page_Length (File) = Page_Length (File)'Old and
-          --           Is_Standard_File (File) = Is_Standard_File (File)'Old;
-		   
-   -- AGS commented out in Pre and Post condition      		   
+     with Global => null,
+          Pre  => (if Is_Writable (File) and then Line_Length (File) > 0 then
+                       To <= Line_Length (File)
+                   elsif Is_Readable (File) then not End_Of_File (File)),
+          Post => (if Status (File) = Success then
+                     Col (File) = (Success, To)) and
+                   Is_Open (File) and Mode (File) = Mode (File)'Old and
+                   Is_Readable (File)  = Is_Readable (File)'Old and
+                   Name (File) = Name (File)'Old and
+                   Form (File) = Form (File)'Old and
+                   Line_Length (File) = Line_Length (File)'Old and
+                   Page_Length (File) = Page_Length (File)'Old and
+                   Is_Standard_File (File) = Is_Standard_File (File)'Old;
+
    procedure Set_Col (To   : in Positive_Count)
      with Global => (In_Out => Standard_Output),
-          Pre    => Is_Writable (Standard_Output); -- and then
---                    (if Line_Length (Standard_Output) > 0 then
---                        To <= Line_Length (Standard_Output));
-          --  Post   => (if Status (Standard_Output) = Success then
-          --                Col (Standard_Output) = (Success, To)) and
-          --             Name (Standard_Output) = Name (Standard_Output)'Old and
-          --             Form (Standard_Output) = Form (Standard_Output)'Old and
-          --             Is_Open (Standard_Output) and
-          --             Mode (Standard_Output) = Out_File and
-          --             Line_Length (Standard_Output) =
-          --                Line_Length (Standard_Output)'Old and
-          --             Page_Length (Standard_Output) =
-          --                Page_Length (Standard_Output)'Old and
-          --             Is_Standard_Output (Standard_Output);
-   
-   -- AGS commented out Post condition      
+          Pre    => Is_Writable (Standard_Output) and then
+                    (if Line_Length (Standard_Output) > 0 then
+                        To <= Line_Length (Standard_Output)),
+          Post   => (if Status (Standard_Output) = Success then
+                        Col (Standard_Output) = (Success, To)) and
+                     Name (Standard_Output) = Name (Standard_Output)'Old and
+                     Form (Standard_Output) = Form (Standard_Output)'Old and
+                     Is_Open (Standard_Output) and
+                     Mode (Standard_Output) = Out_File and
+                     Line_Length (Standard_Output) =
+                        Line_Length (Standard_Output)'Old and
+                     Page_Length (Standard_Output) =
+                        Page_Length (Standard_Output)'Old and
+                     Is_Standard_Output (Standard_Output);
+
    procedure Set_Line (File : in out File_Type; To : in Positive_Count)
      with Global => null,
-          Pre  => Is_Writable (File);-- and then
-                   --   (if Page_Length (File) > 0 then
-                   --      To <= Page_Length (File)
-                   --  elsif Is_Readable (File) then not End_Of_File (File));
-          --  Post => (if Status (File) = Success then
-          --             Page (File) = (Success, To)) and
-          --          (Is_Open (File) and Mode (File) = Mode (File)'Old and
-          --           Name (File) = Name (File)'Old and
-          --           Form (File) = Form (File)'Old and
-          --           Line_Length (File) = Line_Length (File)'Old and
-          --           Page_Length (File) = Page_Length (File)'Old and
-          --           Is_Standard_File (File) = Is_Standard_File (File)'Old);
-		   
-   -- AGS commented out Post condition      		   
+          Pre  => Is_Writable (File) and then
+                    (if Page_Length (File) > 0 then
+                       To <= Page_Length (File)
+                   elsif Is_Readable (File) then not End_Of_File (File)),
+          Post => (if Status (File) = Success then
+                     Page (File) = (Success, To)) and
+                  (Is_Open (File) and Mode (File) = Mode (File)'Old and
+                   Name (File) = Name (File)'Old and
+                   Form (File) = Form (File)'Old and
+                   Line_Length (File) = Line_Length (File)'Old and
+                   Page_Length (File) = Page_Length (File)'Old and
+                   Is_Standard_File (File) = Is_Standard_File (File)'Old);
+
    procedure Set_Line (To   : in Positive_Count)
      with Global => (In_Out => Standard_Output),
-          Pre    => Is_Writable (Standard_Output);-- and then
---                    (if Page_Length > 0 then
---                        To <= Page_Length (Standard_Output));
-          --  Post => (if Status (Standard_Output) = Success then
-          --             Line (Standard_Output) = (Success, To)) and
-          --           Is_Open (Standard_Output) and
-          --           Mode (Standard_Output) = Out_File and
-          --           Name (Standard_Output) = Name (Standard_Output)'Old and
-          --           Form (Standard_Output) = Form (Standard_Output)'Old and
-          --             Line_Length (Standard_Output) =
-          --                Line_Length (Standard_Output)'Old and
-          --             Page_Length (Standard_Output) =
-          --                Page_Length (Standard_Output)'Old and
-          --           Is_Standard_Output (Standard_Output);
+          Pre    => Is_Writable (Standard_Output) and then
+                    (if Page_Length > 0 then
+                        To <= Page_Length (Standard_Output)),
+          Post => (if Status (Standard_Output) = Success then
+                     Line (Standard_Output) = (Success, To)) and
+                   Is_Open (Standard_Output) and
+                   Mode (Standard_Output) = Out_File and
+                   Name (Standard_Output) = Name (Standard_Output)'Old and
+                   Form (Standard_Output) = Form (Standard_Output)'Old and
+                     Line_Length (Standard_Output) =
+                        Line_Length (Standard_Output)'Old and
+                     Page_Length (Standard_Output) =
+                        Page_Length (Standard_Output)'Old and
+                   Is_Standard_Output (Standard_Output);
 
    function Col (File : in File_Type) return Count_Result
    with Global => null,
@@ -581,57 +540,53 @@ is
      with Global => Standard_Output;
 
    --  Character Input-Output
-   
-   -- AGS commented out in Post condition            
+
    procedure Get (File : in out File_Type; Item : out Character_Result)
      with Global => null,
           Pre  => Is_Readable (File) and then not End_Of_File (File),
           Post => Is_Readable (File) and
---                  Name (File) = Name (File)'Old and
---                  Form (File) = Form (File)'Old and
+                  Name (File) = Name (File)'Old and
+                  Form (File) = Form (File)'Old and
                   Is_Standard_File (File) = Is_Standard_File (File)'Old;
-   
-   -- AGS commented out in Post condition         
+
    procedure Get (Item : out Character_Result)
      with Global => (In_Out => Standard_Input),
---          Pre    => not End_Of_File or else
---                      (Is_Readable (Standard_Input) and then
---                          not End_Of_File (Standard_Input)),
+          Pre    => not End_Of_File or else
+                      (Is_Readable (Standard_Input) and then
+                          not End_Of_File (Standard_Input)),
           Post   => Is_Readable (Standard_Input) and
---                    Name (Standard_Input) = Name (Standard_Input)'Old and
---                    Form (Standard_Input) = Form (Standard_Input)'Old and
+                    Name (Standard_Input) = Name (Standard_Input)'Old and
+                    Form (Standard_Input) = Form (Standard_Input)'Old and
                     Is_Standard_File (Standard_Input) and
-                    Is_Standard_Input (Standard_Input); -- and
---                     (if Item.Status = Success then
---                        Status (Standard_Input) = Success);
-   
-   -- AGS commented out Pre and Post condition         
+                    Is_Standard_Input (Standard_Input) and
+                    (if Item.Status = Success then
+                        Status (Standard_Input) = Success);
+
    procedure Put (File : in out File_Type; Item : in Character)
      with Global => null,
-          Pre  => Is_Writable (File), -- and then Status (File) = Success,
+          Pre  => Is_Writable (File) and then Status (File) = Success,
           Post => Is_Writable (File) and
                   Is_Open (File) and
---                  Mode (File) = Mode (File)'Old and
---                  Name (File) = Name (File)'Old and
---                  Form (File) = Form (File)'Old and
---                  Line_Length (File) = Line_Length (File)'Old and
---                  Page_Length (File) = Page_Length (File)'Old and
+                  Mode (File) = Mode (File)'Old and
+                  Name (File) = Name (File)'Old and
+                  Form (File) = Form (File)'Old and
+                  Line_Length (File) = Line_Length (File)'Old and
+                  Page_Length (File) = Page_Length (File)'Old and
                   Is_Standard_File (File) = Is_Standard_File (File)'Old;
-	  
-   -- AGS commented out Pre and Post condition      	  
+
    procedure Put (Item : in  Character)
      with Global => (In_Out => Standard_Output),
---           Pre    => Status (Standard_Output) = Success,
+          Pre    => Status (Standard_Output) = Success,
           Post   => Is_Open (Standard_Output) and
---                    Mode (Standard_Output) = Out_File and
---                    Name (Standard_Output) =
---                      Name (Standard_Output)'Old and
---                    Form (Standard_Output) =
---                      Form (Standard_Output)'Old and
---                    Line_Length (Standard_Output) =
---                       Line_Length (Standard_Output)'Old and
---                    Page_Length (Standard_Output) =
---                       Page_Length (Standard_Output)'Old and
+                    Mode (Standard_Output) = Out_File and
+                    Name (Standard_Output) =
+                      Name (Standard_Output)'Old and
+                    Form (Standard_Output) =
+                      Form (Standard_Output)'Old and
+                    Line_Length (Standard_Output) =
+                       Line_Length (Standard_Output)'Old and
+                    Page_Length (Standard_Output) =
+                       Page_Length (Standard_Output)'Old and
                     Is_Standard_Output (Standard_Output);
 
    procedure Look_Ahead (File        : in  out File_Type;
@@ -640,16 +595,16 @@ is
      with Global => null,
           Pre  => Is_Readable (File),
           Post => Is_Readable (File) and
---                  Name (File) = Name (File)'Old and
---                  Form (File) = Form (File)'Old and
+                  Name (File) = Name (File)'Old and
+                  Form (File) = Form (File)'Old and
                   Is_Standard_File (File) = Is_Standard_File (File)'Old;
 
    procedure Look_Ahead (Item        : out Character_Result;
                          End_Of_Line : out Boolean)
      with Global => (In_Out => Standard_Input),
           Post   => Is_Readable (Standard_Input) and
---                    Name (Standard_Input) = Name (Standard_Input)'Old and
---                    Form (Standard_Input) = Form (Standard_Input)'Old and
+                    Name (Standard_Input) = Name (Standard_Input)'Old and
+                    Form (Standard_Input) = Form (Standard_Input)'Old and
                     Is_Standard_Input (Standard_Input);
 
    procedure Get_Immediate (File      : in out File_Type;
@@ -657,152 +612,144 @@ is
      with Global => null,
           Pre  => Is_Readable (File) and then not End_Of_File (File),
           Post => Is_Readable (File) and
---                  Name (File) = Name (File)'Old and
---                  Form (File) = Form (File)'Old and
+                  Name (File) = Name (File)'Old and
+                  Form (File) = Form (File)'Old and
                   Is_Standard_File (File) = Is_Standard_File (File)'Old;
 
    procedure Get_Immediate (Item      :    out Character_Result)
      with Global => (In_Out => Standard_Input),
-          Pre    => Is_Readable (Standard_Input), -- and then
---                    not End_Of_File,
+          Pre    => Is_Readable (Standard_Input) and then
+                    not End_Of_File,
           Post   => Is_Readable (Standard_Input) and
---                    Name (Standard_Input) = Name (Standard_Input)'Old and
---                    Form (Standard_Input) = Form (Standard_Input)'Old and
+                    Name (Standard_Input) = Name (Standard_Input)'Old and
+                    Form (Standard_Input) = Form (Standard_Input)'Old and
                     Is_Standard_Input (Standard_Input);
 
    procedure Get_Immediate (File      : in out File_Type;
                             Item      :    out Immediate_Result;
                             Available :    out Boolean)
      with Global => null,
-          Pre  => Is_Readable (File), -- and then not End_Of_File (File),
+          Pre  => Is_Readable (File) and then not End_Of_File (File),
           Post => Is_Readable (File) and
---                  Name (File) = Name (File)'Old and
---                  Form (File) = Form (File)'Old and
+                  Name (File) = Name (File)'Old and
+                  Form (File) = Form (File)'Old and
                   Is_Standard_File (File) = Is_Standard_File (File)'Old;
 
    procedure Get_Immediate (Item      : out Immediate_Result;
                             Available : out Boolean)
      with Global => (In_Out => Standard_Input),
-          Pre    => Is_Readable (Standard_Input), -- and then
-                    -- not End_Of_File,
+          Pre    => Is_Readable (Standard_Input) and then
+                    not End_Of_File,
           Post   => Is_Readable (Standard_Input) and
---                    Name (Standard_Input) = Name (Standard_Input)'Old and
---                    Form (Standard_Input) = Form (Standard_Input)'Old and
+                    Name (Standard_Input) = Name (Standard_Input)'Old and
+                    Form (Standard_Input) = Form (Standard_Input)'Old and
                     Is_Standard_Input (Standard_Input);
 
    --  String Input-Output
-   
-   -- AGS commented out in Post condition      
+
    procedure Get (File          : in out File_Type;
                   Item          : out String)
      with Global => null,
           Pre  => Is_Readable (File),
           Post => Is_Readable (File) and
---                  Name (File) = Name (File)'Old and
---                  Form (File) = Form (File)'Old and
+                  Name (File) = Name (File)'Old and
+                  Form (File) = Form (File)'Old and
                   Is_Standard_File (File) =
-                     Is_Standard_File (File)'Old;-- and
---                  (if Status (File) = Success then Item'Length >= 0);
-   
-   -- AGS commented out in Pre and Post condition         
+                     Is_Standard_File (File)'Old and
+                  (if Status (File) = Success then Item'Length >= 0);
+
    procedure Get (Item : out String)
      with Global => (In_Out => Standard_Input),
---          Pre    => Status (Standard_Input) = Success,
+          Pre    => Status (Standard_Input) = Success,
           Post   => Is_Readable (Standard_Input) and
---                    Name (Standard_Input) = Name (Standard_Input)'Old and
---                    Form (Standard_Input) = Form (Standard_Input)'Old and
-                    Is_Standard_Input (Standard_Input); -- and
---                    (if Status (Standard_Input) = Success then
---                        Item'Length >= 0);
-		      
-   -- AGS commented out in Pre and Post condition      		      
+                    Name (Standard_Input) = Name (Standard_Input)'Old and
+                    Form (Standard_Input) = Form (Standard_Input)'Old and
+                    Is_Standard_Input (Standard_Input) and
+                    (if Status (Standard_Input) = Success then
+                        Item'Length >= 0);
+
    procedure Put (File : in out File_Type; Item : in String)
      with Global => null,
-          Pre  => Is_Writable (File),-- and then Status (File) = Success,
+          Pre  => Is_Writable (File) and then Status (File) = Success,
           Post => Is_Writable (File) and
                   Is_Open (File) and
---                  Mode (File) = Mode (File)'Old and
---                  Name (File) = Name (File)'Old and
---                  Form (File) = Form (File)'Old and
---                  Line_Length (File) = Line_Length (File)'Old and
---                  Page_Length (File) = Page_Length (File)'Old and
+                  Mode (File) = Mode (File)'Old and
+                  Name (File) = Name (File)'Old and
+                  Form (File) = Form (File)'Old and
+                  Line_Length (File) = Line_Length (File)'Old and
+                  Page_Length (File) = Page_Length (File)'Old and
                   Is_Standard_File (File) = Is_Standard_File (File)'Old;
-	  
-   -- AGS commented out in Pre and Post condition      	  
+
    procedure Put (Item : in  String)
      with Global => (In_Out => Standard_Output),
---          Pre    => Status (Standard_Output) = Success,
+          Pre    => Status (Standard_Output) = Success,
           Post   => Is_Open (Standard_Output) and
---                    Mode (Standard_Output) = Out_File and
---                    Name (Standard_Output) = Name (Standard_Output)'Old and
---                    Form (Standard_Output) = Form (Standard_Output)'Old and
---                    Line_Length (Standard_Output) =
---                      Line_Length (Standard_Output)'Old and
---                    Page_Length (Standard_Output) =
---                      Page_Length (Standard_Output)'Old and
+                    Mode (Standard_Output) = Out_File and
+                    Name (Standard_Output) = Name (Standard_Output)'Old and
+                    Form (Standard_Output) = Form (Standard_Output)'Old and
+                    Line_Length (Standard_Output) =
+                      Line_Length (Standard_Output)'Old and
+                    Page_Length (Standard_Output) =
+                      Page_Length (Standard_Output)'Old and
                     Is_Standard_Output (Standard_Output);
 
    --  Function_Get_Line is not supported as reading the file has an effect
    --  and the file status following a read is updated meaning the file
    --  parameter is in out.
    --  This is not supported in SPARK - functions shall not have side-effects.
-   
-   -- AGS commented out in Post condition         
+
    procedure Get_Line (File : in out File_Type;
                        Item : out String;
                        Last : out Natural)
      with Global => null,
           Pre  => Is_Readable (File),
           Post => Is_Readable (File) and
---                  Name (File) = Name (File)'Old and
---                  Form (File) = Form (File)'Old and
+                  Name (File) = Name (File)'Old and
+                  Form (File) = Form (File)'Old and
                   Is_Standard_File (File) =
-                     Is_Standard_File (File)'Old; -- and
---                  (if Status (File) = Success then
---                      Last >= Item'First - 1 and Last <= Item'Last
---                   else
---                      Last = 0);
-   
-   -- AGS commented out in Post condition            
+                     Is_Standard_File (File)'Old and
+                  (if Status (File) = Success then
+                      Last >= Item'First - 1 and Last <= Item'Last
+                   else
+                      Last = 0);
+
    procedure Get_Line (Item : out String; Last : out Natural)
      with Global => (In_Out => Standard_Input),
           Post   => Is_Readable (Standard_Input) and
---                    Name (Standard_Input) = Name (Standard_Input)'Old and
---                    Form (Standard_Input) = Form (Standard_Input)'Old and
-                    Is_Standard_Input (Standard_Input); -- and
-                    --  (if Status (Standard_Input) = Success then
-                    --      Last >= Item'First - 1 and Last <= Item'Last
-                    --   else
-                    --      Last = 0);
-   
-   -- AGS commented out in Pre nad Post condition            
+                    Name (Standard_Input) = Name (Standard_Input)'Old and
+                    Form (Standard_Input) = Form (Standard_Input)'Old and
+                    Is_Standard_Input (Standard_Input) and
+                    (if Status (Standard_Input) = Success then
+                        Last >= Item'First - 1 and Last <= Item'Last
+                     else
+                        Last = 0);
+
    procedure Put_Line (File : in out File_Type; Item : in String)
      with Global => null,
---          Pre  => Is_Writable (File) and then Status (File) = Success,
+          Pre  => Is_Writable (File) and then Status (File) = Success,
           Post => Is_Writable (File) and
                   Is_Open (File) and
---                  Mode (File) = Mode (File)'Old and
---                  Name (File) = Name (File)'Old and
---                  Form (File) = Form (File)'Old and
---                  Line_Length (File) = Line_Length (File)'Old and
---                  Page_Length (File) = Page_Length (File)'Old and
+                  Mode (File) = Mode (File)'Old and
+                  Name (File) = Name (File)'Old and
+                  Form (File) = Form (File)'Old and
+                  Line_Length (File) = Line_Length (File)'Old and
+                  Page_Length (File) = Page_Length (File)'Old and
                   Is_Standard_File (File) = Is_Standard_File (File)'Old;
 
-   
-   -- AGS commented out in Pre and Post condition            
+
    procedure Put_Line (Item : in  String)
      with Global => (In_Out => Standard_Output),
---           Pre    => Status (Standard_Output) = Success,
+          Pre    => Status (Standard_Output) = Success,
           Post   => Is_Open (Standard_Output) and
---                    Mode (Standard_Output) = Out_File and
---                    Name (Standard_Output) =
---                       Name (Standard_Output)'Old and
---                    Form (Standard_Output) =
---                       Form (Standard_Output)'Old and
---                    Line_Length (Standard_Output) =
---                       Line_Length (Standard_Output)'Old and
---                    Page_Length (Standard_Output) =
---                       Page_Length (Standard_Output)'Old and
+                    Mode (Standard_Output) = Out_File and
+                    Name (Standard_Output) =
+                       Name (Standard_Output)'Old and
+                    Form (Standard_Output) =
+                       Form (Standard_Output)'Old and
+                    Line_Length (Standard_Output) =
+                       Line_Length (Standard_Output)'Old and
+                    Page_Length (Standard_Output) =
+                       Page_Length (Standard_Output)'Old and
                     Is_Standard_Output (Standard_Output);
 
 end SPARK.Text_IO;
