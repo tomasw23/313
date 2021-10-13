@@ -9,6 +9,10 @@ is
 --      with Refined_Global => Glob 
    is
    begin
+      -- gnatprove -P main.gpr --mode=prove
+      --    causes error because of range check might fail
+      -- gnatprove -P mainWithoutRangeCheck.gpr --mode=prove
+      --   succeeds
       return X + Glob;
    end A1;
    

@@ -1,4 +1,5 @@
 pragma SPARK_MODE;
+with as_io_wrapper; use as_io_wrapper;
 
 package body Main 
   is
@@ -12,7 +13,7 @@ begin
    Init;
    while (Y > 0) loop
       Y := A1(Y);
-      New_Line;
+      As_Put_Line;
    end loop;
 end A1;
 

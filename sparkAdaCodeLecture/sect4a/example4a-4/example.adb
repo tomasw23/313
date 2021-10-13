@@ -14,6 +14,9 @@ package body Example
    function A1 (X : in Float) return Float
    is
    begin
+      -- spark ada reports an overflow problem even when using
+      -- gnatprove -P mainWithoutRangeCheck.gpr  --mode=prove
+      -- 
       return X + Glob;
    end A1;
    

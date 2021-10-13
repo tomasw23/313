@@ -1,6 +1,4 @@
 pragma SPARK_MODE;
-with Example;
-use Example;
 
 procedure Main
 is  

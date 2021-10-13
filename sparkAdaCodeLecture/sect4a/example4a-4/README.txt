@@ -1,15 +1,12 @@
-We got error messages:
+Even when using mainWithoutRangeCheck.gpr 
+spark ada reports the error
 
-known issue of spark-text_io:
-
-spark-text_io.ads:95:25: warning: unrecognized convention name, C assumed
-spark-text_io.ads:99:25: warning: unrecognized convention name, C assumed
-spark-text_io.ads:103:25: warning: unrecognized convention name, C assumed
-spark-text_io.ads:108:23: warning: unrecognized convention name, C assumed
-spark-text_io.ads:114:25: warning: unrecognized convention name, C assumed
-
-
-example.adb:17:16: medium: overflow check might fail
+example.adb:20:16: medium: float overflow check might fail
   this is due to the fact that we might exceed maximum floating point number
+
+There may be a switch to the mainWithoutRangeCheck.gpr to fix this problem,
+if you find a solution please tell Anton Setzer a.g.setzer@swansea.ac.uk
+
+
 
 
