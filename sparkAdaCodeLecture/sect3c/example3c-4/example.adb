@@ -1,4 +1,4 @@
-with SPARK.Text_IO; use SPARK.Text_IO;
+with as_io_wrapper; use As_Io_Wrapper;
 
 
 procedure Example
@@ -9,10 +9,14 @@ is
 begin
    loop 
       if A = 5 then
-	 New_Line;
+	 As_Put_Line(A);
 	 return;
       end if;
       A := A + 1;
-      New_Line;
+      -- gnatprove -P main.gpr --mode=prove
+      --   fails because of possible out of range error
+      -- gnatprove -P mainWithoutRangeCheck.gpr --mode=prove
+      --   succeeds (no range check)
+      As_Put_Line(A);      
   end loop;
 end Example;

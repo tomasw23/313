@@ -16,8 +16,8 @@ or
 
 It contains two very simple examples for using it:
 
-test_integer_io.ads 
-test_string_io.ads
+test_integer_io.adb
+test_string_io.adb
 
 
 The lines 
@@ -25,20 +25,19 @@ pragma SPARK_Mode (On);
 and
 with Global => (Output => (Standard_Output, Standard_Input));
 
-are added so that the code is comptabible with Spark_Ada.
+are added so that the code is compatible with Spark_Ada.
 
 To try it out you can
-- click on main.gpr to activate GPS
+- click on main.gpr to activate gnatstudio
 - open from there the file test_integer_io.adb   or test_string_io.adb
 - execute Build -> Project -> Build <current file>
   this should compile the code
 - now you can execute it using 
   Build -> Run 
-   and replacing the command used there by
-   xterm -hold -e test_integer_io     (for executing test_integer_io)
-   or
-   xterm -hold -e test_string_io     (for executing test_string_io)
-
+   and replacing the command used (using preferences ) by xterm -hold 
+  execute from terminal
+   ./test_integer_io
+   ./test_string_io
 
 
 

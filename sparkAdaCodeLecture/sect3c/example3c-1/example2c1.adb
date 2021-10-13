@@ -3,6 +3,8 @@ package body Example2c1
 
   
 is
+   -- We get an error when checking with Spark Ada
+   -- since functions having side effects are not allowed
    Function F(X : Integer) return  Integer
    is
    begin
