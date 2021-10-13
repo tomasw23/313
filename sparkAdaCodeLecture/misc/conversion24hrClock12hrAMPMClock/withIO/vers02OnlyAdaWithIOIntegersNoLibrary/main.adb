@@ -1,3 +1,4 @@
+pragma SPARK_Mode;
 with Ada.Text_Io, Ada.Integer_Text_IO, Clock;
 use Ada.Text_Io, Ada.Integer_Text_Io, Clock;
 
@@ -23,6 +24,8 @@ begin
       New_Line;   
       Put_Line("Note that this program is not the correct conversion from 24hrs to am/pm"); 
       Put_Line("See ../README.txt for details");
+      -- The following lines don't pass SPARK Ada checks because we are not using
+      -- the SPARK Ada library for IO
       Get_Line(User_Input, Last);  -- clearing input buffer
       Put("Do you want to try again (y/n):");
       Get_Line(User_Input, Last);

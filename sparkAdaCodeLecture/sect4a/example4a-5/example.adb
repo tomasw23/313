@@ -5,6 +5,8 @@ package body Example
      is
 	T : Float;
      begin
+	-- There are several errors as expected from the lecture
+	-- see README.txtx
 	T := X; X:= Y; Y := X;
      end Exchange;
    

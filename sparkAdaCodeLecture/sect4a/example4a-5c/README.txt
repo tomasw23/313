@@ -1,4 +1,4 @@
-gnatprove -P main.gpr --proof=per_path
+gnatprove -P main.gpr --proof=flow
 
 returns
 

@@ -1,9 +1,12 @@
-gnatmake gives no errors
+Correction of example-4b (except for overflow error which will be discussed in 
+    sect 5 )
 
-gnatprove reports the error discussed in the lecture
+gnatprove -P main.gpr --proof=per_path
+reports
+exchange_and_count.adb:9:34: medium: overflow check might fail
 
-exchange_and_count.ads:6:20: medium: missing dependency "Z => X"
 
-and in addition an overflow error
-exchange_and_count.adb:6:34: medium: overflow check might fail
+gnatprove -P mainWithoutRangeCheck.gpr --proof=per_path
+reports no errors.
+
 

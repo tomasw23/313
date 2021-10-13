@@ -8,6 +8,8 @@ package body Loopexample is
 	 I := 0;
 	 Res := 0;
 	 loop
+	    -- sparkada reports overlow problems
+	    -- see README.txt for details
 	    I := I + 1;
 	    Res := Res + 2;
 	    exit when Res >= N;

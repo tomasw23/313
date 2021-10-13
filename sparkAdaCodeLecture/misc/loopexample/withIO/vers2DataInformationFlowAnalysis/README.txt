@@ -1,11 +1,12 @@
-gnatmake has no errors
-
 gnatprove -P main.gpr --proof=per_path
 
 reports
 
-exchange_and_count2.adb:7:34: medium: overflow check might fail
+loopexample.adb:11:20: medium: overflow check might fail
+
+loopexample.adb:12:24: medium: overflow check might fail
 
 gnatprove -P mainWithoutRangeCheck.gpr  --proof=per_path
-passes everything as does
+and
 gnatprove -P main.gpr --mode=flow
+both succeed

@@ -1,8 +1,8 @@
-gnatprove -P main.gpr --proof=per_path
+gnatprove -P main.gpr --mode=flow
 
 returns
 
-example.ads:5:24: warning: unused initial value of "X"
+example.ads:5:30: warning: unused initial value of "X"
 
 
 this is the expected error discussed in the lecture

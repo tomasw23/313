@@ -1,5 +1,8 @@
 This is the example with added IO for tyring out.
-In order to add IO we added all the files from the library
-asLibraryIO
 
+
+This file doesn't pass Spark ada checks because it doesn't use
+the sparkada IO library.
+
+vers03 will pass spark ada checks.
 

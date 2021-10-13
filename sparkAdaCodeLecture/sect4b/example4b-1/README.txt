@@ -1,6 +1,10 @@
 gnatmake has no errors
 
-gnatprove gives overflow errors:
-example.adb:24:14: medium: overflow check might fail
-example.adb:29:14: medium: overflow check might fail
-example.adb:34:14: medium: overflow check might fail
+gnatprove -P main.gpr --proof=per_path
+reports 
+example.adb:25:14: medium: overflow check might fail
+example.adb:31:14: medium: overflow check might fail
+example.adb:37:14: medium: overflow check might fail
+
+gnatprove -P mainWithoutRangeCheck.gpr  --proof=per_path
+reports no errors

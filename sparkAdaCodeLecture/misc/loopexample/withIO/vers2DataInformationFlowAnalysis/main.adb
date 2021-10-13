@@ -1,7 +1,6 @@
-with AS_IO_Wrapper;  
-use AS_IO_Wrapper; 
-with Loopexample;
-use  Loopexample;
+pragma SPARK_Mode;
+with AS_IO_Wrapper;  use AS_IO_Wrapper; 
+with Loopexample;  use  Loopexample;
 
 procedure Main is
    N, I, Res : Integer;

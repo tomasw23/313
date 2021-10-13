@@ -8,6 +8,12 @@ is
        with Refined_Global => Glob 
    is
    begin
+      -- checking
+      --     gnatprove -P main.gpr --proof=per_path
+      -- reports overflow check might fail
+      -- checking
+      --    gnatprove -P mainWithoutRangeCheck.gpr  --proof=per_path
+      -- reports no error   
       return X + Glob;
    end A1;
    

@@ -1,7 +1,5 @@
 pragma SPARK_MODE;
-with SPARK.Text_IO; use SPARK.Text_IO;
-
-with Example; use Example;
+with As_Io_Wrapper; use As_Io_Wrapper;
 
 
 procedure main
@@ -11,7 +9,7 @@ begin
    Init;
    while (Y > 0) loop
       Y := A1(Y);
-      New_Line;
+      As_Put_Line;
    end loop;
 end Main;
    

@@ -1,7 +1,7 @@
-with AS_IO_Wrapper;  
-use AS_IO_Wrapper; 
-with Loopexample;
-use  Loopexample;
+pragma SPARK_Mode;
+
+with AS_IO_Wrapper;  use AS_IO_Wrapper; 
+with Loopexample; use  Loopexample;
 
 procedure Main is
    N, I, Res : Integer;
@@ -13,10 +13,14 @@ begin
    AS_Init_Standard_Input;   
    loop   
      -- Print on screen "Type in some number"
-     AS_Put("Type in a number: ");
-     -- ask for an  integer (in variable X) until an integer has been entered
-     --   if something else has been entered ask again
-     AS_Get(N,"Please type in an integer; please try again");
+      AS_Put("Type in a number: ");
+      loop
+	 -- ask for an  integer (in variable X) until an integer has been entered
+	 --   if something else has been entered ask again
+	AS_Get(N,"Please type in an integer; please try again");
+	exit when N in 1 .. 1000;
+	AS_Put_Line("Please enter a number in 1 .. 1000");
+     end loop;      
      LoopProc(N,I,Res);
      AS_Put("I   = ");
      AS_Put_Line(I);

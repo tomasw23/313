@@ -1,4 +1,3 @@
-with Example; use Example;
 
 
 procedure Main
