@@ -11,3 +11,6 @@ example.adb:16:18: medium: overflow check might fail
 which is due to increasing or decreasing integers without any
 restrictions
 
+
+gnatprove -P mainWithoutRangeCheck.gpr --mode=prove
+succeeds (no range check)

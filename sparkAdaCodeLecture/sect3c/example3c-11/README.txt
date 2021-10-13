@@ -1,9 +1,8 @@
-gnatmake main.adb
+Spark Ada 2015 detected an infinite loop 
+Spark Ada 2021 doesn't detect this anymore.
 
-returns
-example.adb:8:14: possible infinite recursion
-example.adb:8:14: Storage_Error might have been raised at run time
+gnatprove -P main.gpr --mode=prove
+  fails in line return F(X + 1); 
+gnatprove -P mainWithoutRangeCheck.gpr --mode=prove
+  succeeds
 
-gnatprove -P main.gpr --proof=per_path
-
-returns the same

@@ -1,4 +1,6 @@
 -- pragma SPARK_MODE;
+--    not needed because of line  below
+--        with SPARK_MODE is   
 -- with SPARK.Text_IO; use SPARK.Text_IO;
 
 package body Example 

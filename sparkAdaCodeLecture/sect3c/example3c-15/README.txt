@@ -1,10 +1,13 @@
 gnatmake main.adb 
 succeeds
 
+Although we have spark_mode(off)
+the command
 gnatprove -P main.gpr --proof=per_path
 gives an error
-main.adb:10:07: warning: actuals for this call may be in wrong order
+main.adb:17:07: warning: actuals for this call may be in wrong order [-gnatw.p]
 
-referring to the statement
+It is referring to the statement
 Exchange(Y,X);      
-I don't understand this message.
+it spots that the variables have the same names but are used in different order.
+If one replaces X,Y by A,B the problem disappears.

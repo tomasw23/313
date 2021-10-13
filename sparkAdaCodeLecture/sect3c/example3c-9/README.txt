@@ -1,2 +1,4 @@
-Overflow check fails because we might get out of the range of integers.
-Otherwise everything is okay.
+Checking with main.gpr
+  gives errors because range check might fails.
+Checking with mainWithoutRangeCheck.gpr
+  succeeds

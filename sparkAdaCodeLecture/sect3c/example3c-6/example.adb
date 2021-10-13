@@ -10,6 +10,12 @@ begin
       elsif A = 4 then 
 	   exit;
       end if;
+      -- checking using
+      --    gnatprove -P main.gpr --mode=prove
+      -- causes error: overflow check might fail
+      -- checking using
+      --     gnatprove -P mainWithoutRangeCheck.gpr --mode=prove
+      -- succeeds
       A:= A + 1;
    end loop;
    return A;

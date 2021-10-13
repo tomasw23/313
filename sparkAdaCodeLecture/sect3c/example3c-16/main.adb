@@ -3,8 +3,9 @@ with Example;
 use Example;
 
 procedure Main(X : in out Boolean) is
-   begin
-      Exchange(X,X);
-   end Main;
+begin
+   -- compiling gives error because of potential aliasing problem.
+   Exchange(X,X);
+end Main;
    
    

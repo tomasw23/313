@@ -11,6 +11,10 @@ package body Example
 	 elsif B = 4 then 
 	    exit;
 	 end if;
+	 -- when checked with main.gpr
+	 --   causes error overflow check might fail
+	 -- when checked using mainWithoutRangeCheck.gpr
+	 --   no error
 	 B:= B + 1;
       end loop;
       return B;

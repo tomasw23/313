@@ -5,6 +5,11 @@ package body Example
    is
       
    begin
+      -- gnatprove -P main.gpr --mode=prove
+      --    fails because of overflow might fail
+      -- gnatprove -P mainWithoutRangeCheck.gpr --mode=prove
+      --    succeeds
+      
       return G(X + 1);
    end F;
    
@@ -13,6 +18,11 @@ package body Example
    is
       
    begin
+      -- gnatprove -P main.gpr --mode=prove
+      --    fails because of overflow might fail
+      -- gnatprove -P mainWithoutRangeCheck.gpr --mode=prove
+      --    succeeds
+
       return F(X + 1);
    end G;
    
