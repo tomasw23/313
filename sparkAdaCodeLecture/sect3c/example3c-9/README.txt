@@ -1,4 +1,4 @@
-Checking with main.gpr
+gnatprove -P main.gpr --mode=prove
   gives errors because range check might fails.
-Checking with mainWithoutRangeCheck.gpr
+gnatprove -P mainWithoutRangeCheck.gpr --mode=prove
   succeeds

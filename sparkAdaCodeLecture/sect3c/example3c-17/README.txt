@@ -1,17 +1,16 @@
-This shows that from a files with sparkmode on one cannot call
-a file with sparkmode off
+This shows that from a files with "spark_mode(on)" one cannot call
+a file with "spark_mode(off)"
 This happens in this example with
 main.adb (sparkmode on) calling exchange in example.adb (sparkmode off)
 
+both
 gnatprove -P main.gpr --proof=per_path
+and
+gnatprove -P main.gpr --mode=flow
 
-gives
+give errors:
 
-Phase 1 of 2: generation of Global contracts ...
-Phase 2 of 2: flow analysis and proof ...
-main.adb:9:07: "Exchange" is not allowed in SPARK
-main.adb:9:07: violation of pragma SPARK_Mode at line 1
-main.adb:10:07: warning: actuals for this call may be in wrong order
-main.adb:10:07: "Exchange" is not allowed in SPARK
-main.adb:10:07: violation of pragma SPARK_Mode at line 1
-gnatprove: error during flow analysis and proof
+main.adb:13:04: error: "Exchange" is not allowed in SPARK
+main.adb:29:04: warning: actuals for this call may be in wrong order [-gnatw.p]
+main.adb:29:04: error: "Exchange" is not allowed in SPARK
+
