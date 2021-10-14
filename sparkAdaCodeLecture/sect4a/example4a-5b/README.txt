@@ -1,13 +1,9 @@
 This is the  corrected version of example4a-5
 
+gnatmake example.adb
+  succeeds with no errors
 gnatprove -P main.gpr --proof=per_path
-
-returns
-
-Phase 1 of 2: generation of Global contracts ...
-Phase 2 of 2: flow analysis and proof ...
-
-(program is correct)
+  succeeds with no errors
 
 
 
