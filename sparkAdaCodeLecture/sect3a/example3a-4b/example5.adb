@@ -17,6 +17,12 @@ Procedure Example5 is
      else
 	   Myyear := 2100;
      end if;
+     if Myyear < 2000
+     then
+       Put_Line("Year < 2000");
+     else
+	Put_Line("Year >= 2000");	
+     end if;
      
   end Example5;
   

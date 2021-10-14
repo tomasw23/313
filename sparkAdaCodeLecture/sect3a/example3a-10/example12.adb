@@ -1,5 +1,7 @@
-with Ada.Text_Io, Ada.Integer_Text_IO;
-use Ada.Text_Io, Ada.Integer_Text_Io;
+with Ada.Integer_Text_IO; use Ada.Integer_Text_IO;
+
+ 
+
 
 package body Example12 is
    

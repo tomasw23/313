@@ -16,6 +16,10 @@ package body Example15 is
       Put("C=");      
       Put(C);
       New_Line;      
+      if X > 0
+      then Put("X>0");
+      else Put("X<=0");      
+      end if;
    end MyProc;
    
    function F(B,C : in Integer) return Integer is

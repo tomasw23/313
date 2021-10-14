@@ -18,6 +18,13 @@ Procedure Example5 is
 	   Yearvar := 2100;
      end if;
      Integervar  := Yearvar;
+     if Integervar < 2000
+     then
+	Put_Line("year < 2000");
+     else
+	Put_Line("year >= 2000");
+     end if;
+     
      
   end Example5;
   

@@ -7,7 +7,14 @@ procedure abc(A: in Float;
 	      B: out Integer;
 	      C: in out Color) is
 begin
-   B := 3;
+   if A < 1.0
+   then
+      B := 3;
+      C := Red;
+   else
+      B := 4;
+      C := Green;      
+   end if;
    Put(B);
 end abc;
 

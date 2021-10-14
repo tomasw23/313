@@ -1,7 +1,7 @@
 with Text_Io;
 use text_io;
 
-procedure Testparameterpassing is
+procedure Testparameterpassing3 is
 
 type Testrecord is
   record
@@ -28,6 +28,6 @@ begin
   Exchange(X,Y);
   Put_Line(X.A);
   Put_Line(Y.A);
-end Testparameterpassing;
+end Testparameterpassing3;
 
 

@@ -3,5 +3,5 @@ use Example11;
 
 procedure Main is
    begin
-      Example11.Example;
+      Example;
    end Main;
