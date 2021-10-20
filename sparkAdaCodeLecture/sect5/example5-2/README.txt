@@ -1,5 +1,17 @@
 Trying out syntax for formulas in pre and post conditions.
 Formulas don't make sense, are just used to demonstrate formulas.
+The code was not meant to pass the verification conditions
+
+gnatmake example.adb
+  succeeds
+
+gnatprove -P mainWithoutRangeCheck.gpr  --proof=progressive
+gives error 
+example.ads:13:11: medium: postcondition might fail
+   13 |  Post => M = M'Old + 1;
+      |          ^~~~~~~~~~~~~
+
+
 
 gnatprove -P main.gpr --proof=progressive
 causes errors, it was not intended to get this example correct

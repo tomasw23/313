@@ -4,8 +4,8 @@ package Example is
    
    type Mytype is new Integer range 0 .. 5;
 
-procedure Example1(N : in Integer; M : out Integer)
-  with Depends => (M => N),
+procedure Example1(N : in Integer; M : in out Integer)
+  with Depends => (M => (M,N)),
   Pre => ((if N >= 5 then N >= 3) 
   and (if N >= 5 then N >=3 else N < 5)
   and (if N >= 5 then N >=3 and N >= 3 else N < 5 and N < 3)
