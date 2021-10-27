@@ -1,10 +1,5 @@
 pragma SPARK_Mode;
-package Test is 
-   pragma Elaborate_Body(Test);
-end Test;
-
 package body Test is
-   with SPARK_Mode;
 
    procedure Init(A : out Integer)
      with Depends => (A => null),
@@ -22,9 +17,7 @@ package body Test is
    end Inc;
       
    
-   Procedure Main(A : out Integer)
-     with Depends => (A => null),
-     Post => (A = 2) is
+   Procedure Main(A : out Integer) is
    begin
       Init(A);
       Inc(A);

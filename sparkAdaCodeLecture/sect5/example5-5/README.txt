@@ -1,5 +1,5 @@
 This example demonstrates that X'Old can only occur for an input or input/output parameter
-It fails flow analysis
+It fails flow analysis, and should do so as discussed in the lecture.
 
 gnatmake example.adb
   succeeds

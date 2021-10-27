@@ -2,7 +2,17 @@ This file contains the examples from
 
 /opt/spark2014/share/examples/spark/spark_io/
 
-I added my standard main.gpr file.
+I added the standard main.gpr file.
+
+
+gnatmake use_int_io.adb
+  succeeds
+gnatmake use_int_io_1.adb
+  succeeds
+gnatmake use_int_io_2.adb 
+  succeeds
+
+
 
 SPARK Ada crashes on my laptop when running
 gnatprove -P main.gpr --proof=per_path
@@ -123,3 +133,5 @@ Consider also -gnatd.n switch (see debug.adb).
 
 compilation abandoned
 gnatprove: error during flow analysis and proof
+
+

@@ -27,3 +27,14 @@ has
                             Status (Standard_Input) = Success and
                             Status (Standard_Output) = Success and
                             Status (Standard_Error) = Success
+
+
+
+gnatprove -P main.gpr --mode=flow
+reports as well lots of errors
+
+However 
+gnatmake use_int_io.adb
+  succeeds
+gnatmake use_int_io_1.adb 
+  succeeds
