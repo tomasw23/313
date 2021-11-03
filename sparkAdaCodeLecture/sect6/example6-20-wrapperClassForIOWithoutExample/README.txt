@@ -1,4 +1,8 @@
-This file contains a wrapper class for IO
+gnatprove -P main.gpr --proof=progressive
+   succeeds
+----------------------------------------------
+
+This directory contains a wrapper class for IO
 as_io_wrapper.ads and
 as_io_wrapper.adb
 

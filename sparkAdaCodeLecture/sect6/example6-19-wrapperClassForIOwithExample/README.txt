@@ -1,3 +1,10 @@
+gnatmake test_integer_io.adb
+gnatmake test_string_io.adb
+gnatprove -P main.gpr --proof=progressive
+  all succeed
+
+---
+
 This file contains a wrapper class for IO
 as_io_wrapper.ads and
 as_io_wrapper.adb

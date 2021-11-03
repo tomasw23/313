@@ -1,3 +1,8 @@
+gnatmake main.adb
+gnatprove -P main.gpr --proof=progressive
+   both succeed
+-------------------
+
 This is an adaption of sect6/example6-19 for testing
 whether the installation works and getting started.
 

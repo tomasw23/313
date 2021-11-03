@@ -1,3 +1,7 @@
+gnatmake main.adb
+gnatprove -P main.gpr --proof=progressive
+  both succeed
+--------------------------------------------
 This file contains a very simple toy example of a critical system,
 a cooling system of a nuclear power station.
 What it does is it asks for the temperature, and if it exceeds a critical
