@@ -312,24 +312,20 @@ package Simple_Railway is
 
  procedure Print_One_Signal(The_Signal_State: in One_Signal_State) with
    Global => (In_Out => Standard_Output),
-   Depends => (Standard_Output => (Standard_Output, The_Signal_State)),
-   Pre    => Status (Standard_Output) = Success,
-   Post   => Status (Standard_Output) = Success;
+   Depends => (Standard_Output => (Standard_Output, The_Signal_State));
 
 
  procedure Print_One_Segment_State(the_State: in One_Segment_State) with
    Global => (In_Out => Standard_Output),
-   Depends => (Standard_Output => (Standard_Output, The_State)),
-   Pre    => Status (Standard_Output) = Success,
-   Post   => Status (Standard_Output) = Success;
+   Depends => (Standard_Output => (Standard_Output, The_State));
+
 
 
 procedure Print_State with
    Global => (In_Out => Standard_Output,
 	      Input => (Segment_State, Signal_State)),
-   Depends => (Standard_Output => (Standard_Output, Segment_State,Signal_State)),
-   Pre    => Status (Standard_Output) = Success,
-   Post   => Status (Standard_Output) = Success;
+   Depends => (Standard_Output => (Standard_Output, Segment_State,Signal_State));
+
 
 
 
@@ -339,19 +335,6 @@ procedure Get_Action(Route: out Route_Type;
   Depends => (Standard_Output => (Standard_Output, Standard_Input),
 	      Standard_Input =>   Standard_Input,
 	      Route =>   Standard_Input,
-	      The_Mode =>   Standard_Input),
-   Pre    => Status (Standard_Output) = Success,
-   Post   => Status (Standard_Output) = Success;
-  --# global in out Spark_IO.Inputs, Spark_IO.Outputs;
- --# derives Spark_IO.Outputs from Spark_IO.Outputs, Spark_IO.Inputs &
- --#         Spark_IO.Inputs, Route, The_Mode from Spark_IO.Inputs ;
-
-
-
-
-
-
-
-
+	      The_Mode =>   Standard_Input);
 
 end Simple_Railway;

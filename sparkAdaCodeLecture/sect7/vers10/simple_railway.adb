@@ -1,4 +1,6 @@
 pragma SPARK_Mode;
+with AS_Io_Wrapper; use AS_Io_Wrapper;
+
 package body Simple_Railway
 is
    
@@ -230,65 +232,62 @@ is
  procedure Print_One_Signal(The_Signal_State: in One_Signal_State) is
     begin
        case The_Signal_State is
-	  when Red => Put("Red");
-	  when Green => Put("Green");   
-  --       when Green =>Spark_IO.Put_String(Spark_IO.Standard_Output,
-  --                                       "Green",
-  --                                       0);
+	  when Red => AS_Put("Red");
+	  when Green => AS_Put("Green");   
        end case;
     end Print_One_Signal;
 
  procedure Print_One_Segment_State(the_State: in One_Segment_State) is
     begin
        case The_State is
-         when Occupied_Standing => Put("Occupied_Standing");
-         when Occupied_Moving_Left => Put("Occupied_Moving_Left");
-         when Occupied_Moving_Right => Put("Occupied_Moving_Right");
-         when Reserved_Moving_From_Left => Put("Reserved_Moving_From_Left");
-         when Reserved_Moving_From_Right => Put("Reserved_Moving_From_Right");
-         when Free => Put("Free");
+         when Occupied_Standing => AS_Put("Occupied_Standing");
+         when Occupied_Moving_Left => AS_Put("Occupied_Moving_Left");
+         when Occupied_Moving_Right => AS_Put("Occupied_Moving_Right");
+         when Reserved_Moving_From_Left => AS_Put("Reserved_Moving_From_Left");
+         when Reserved_Moving_From_Right => AS_Put("Reserved_Moving_From_Right");
+         when Free => AS_Put("Free");
        end case;
     end Print_One_Segment_State;
 
 
  procedure Print_State is
     begin
-       Put_Line("Starting From Left");
-       Put("V");
+       AS_Put_Line("Starting From Left");
+       AS_Put("V");
        Print_One_Signal(Signal_State.Enter_Left);
-       Put_Line(" ");
-       Put("^");
+       AS_Put_Line(" ");
+       AS_Put("^");
        Print_One_Signal(Signal_State.Leave_Left);
-       Put_Line(" ");
-       Put("Segment_Left:");
+       AS_Put_Line(" ");
+       AS_Put("Segment_Left:");
        Print_One_Segment_State(Segment_State.Left);
-       Put_Line(" ");
-       Put("V");
+       AS_Put_Line(" ");
+       AS_Put("V");
        Print_One_Signal(Signal_State.Left_Middle);
-       Put_Line(" ");
-        Put("^");
+       AS_Put_Line(" ");
+        AS_Put("^");
        Print_One_Signal(Signal_State.Middle_Left);
-       Put_Line(" ");
-       Put("Segment_Middle:");
+       AS_Put_Line(" ");
+       AS_Put("Segment_Middle:");
        Print_One_Segment_State(Segment_State.Middle);
-       Put_Line(" ");
-       Put("V");
+       AS_Put_Line(" ");
+       AS_Put("V");
        Print_One_Signal(Signal_State.Middle_Right);
-       Put_Line(" ");
-       Put("^");
+       AS_Put_Line(" ");
+       AS_Put("^");
        Print_One_Signal(Signal_State.Right_Middle);
-       Put_Line(" ");
-       Put("Segment_Right:");
+       AS_Put_Line(" ");
+       AS_Put("Segment_Right:");
        Print_One_Segment_State(Segment_State.Right);
-       Put_Line("  ");
-       Put("V");
+       AS_Put_Line("  ");
+       AS_Put("V");
        Print_One_Signal(Signal_State.Leave_Right);
-       Put_Line(" ");
-       Put("^");
+       AS_Put_Line(" ");
+       AS_Put("^");
        Print_One_Signal(Signal_State.Enter_Right);
-       Put_Line(" ");
-       Put("Right");
-       Put_Line("  ");
+       AS_Put_Line(" ");
+       AS_Put("Right");
+       AS_Put_Line("  ");
     end Print_State;
     
  procedure Get_Action(Route: out Route_Type;
@@ -310,21 +309,21 @@ is
 
     begin
        loop
-	  pragma Loop_Invariant  (Status (Standard_Output) = Success);
-          Put_Line("Select Mode and Route");
-          Put_Line("First Letter O for Open, M for Move");
-          Put_Line("Letters 2 and 3 as follows");
-          Put_Line("ML for Middle_Left");
-          Put_Line("LM for Left_Middle");
-          Put_Line("RM for Right_Middle");
-          Put_Line("MR for Middle_Right");
-          Put_Line("LL for Leave_Left");
-          Put_Line("EL for Enter_Left");
-          Put_Line("LR for Leave_Right");
-          Put_Line("ER for Enter_Right");
+--	  pragma Loop_Invariant  (Status (Standard_Output) = Success);
+          AS_Put_Line("Select Mode and Route");
+          AS_Put_Line("First Letter O for Open, M for Move");
+          AS_Put_Line("Letters 2 and 3 as follows");
+          AS_Put_Line("ML for Middle_Left");
+          AS_Put_Line("LM for Left_Middle");
+          AS_Put_Line("RM for Right_Middle");
+          AS_Put_Line("MR for Middle_Right");
+          AS_Put_Line("LL for Leave_Left");
+          AS_Put_Line("EL for Enter_Left");
+          AS_Put_Line("LR for Leave_Right");
+          AS_Put_Line("ER for Enter_Right");
           loop
-	     pragma Loop_Invariant  (Status (Standard_Output) = Success);
-             Get_Line(Item,Stop);
+--	     pragma Loop_Invariant  (Status (Standard_Output) = Success);
+             AS_Get_Line(Item,Stop);
              exit when not (Stop = 0);
           end loop;
           Success_Mode  := False;
@@ -343,7 +342,7 @@ is
              The_Mode := Mode_Move;
              Success_Mode:= True;
           else
-             Put_Line("*** Mode (first letter) not valid. Should be O/M***");
+             AS_Put_Line("*** Mode (first letter) not valid. Should be O/M***");
           end if;
           Route := Route_Left_Middle;
           if Item_2 = "LM"
@@ -380,7 +379,7 @@ is
              Route := Route_Enter_Right;
           else
              Success_Route:= False;
-             Put_Line("*** Route (letter 2 and 3) not valid ***");
+             AS_Put_Line("*** Route (letter 2 and 3) not valid ***");
           end if;
           exit when (Success_Route and Success_Mode);
        end loop;
