@@ -680,7 +680,7 @@ is
                   Page_Length (File) = Page_Length (File)'Old and
                   Is_Standard_File (File) = Is_Standard_File (File)'Old;
 
-   procedure Put (Item : in  String)
+   procedure Puto (Item : in  String)
      with Global => (In_Out => Standard_Output),
           Pre    => Status (Standard_Output) = Success,
           Post   => Is_Open (Standard_Output) and

@@ -26,33 +26,37 @@ pragma SPARK_Mode (On);
 
 with Integer_IO;    use Integer_IO;
 with SPARK.Text_IO; use SPARK.Text_IO;
+with SPARK.Text_IO.Integer_IO; use SPARK.Text_IO.Integer_IO; pragma Elaborate (SPARK.Text_IO);
 
 procedure Use_Int_IO
-  with Global => (In_Out => (Standard_Output, Standard_Error)),
-       Pre    => Is_Writable (Standard_Error) and
-                 Status (Standard_Error) = Success
+  with Global => (In_Out => (Standard_Output, Standard_Error))
+--       Pre    => Is_Writable (Standard_Error) and
+--                 Status (Standard_Error) = Success
 is
 begin
    for I in 1 .. 10 loop
-      pragma Loop_Invariant (Is_Writable (Standard_Error) and
-                             Status (Standard_Error) = Success);
-      if Status (Standard_Output) = Success then
-         Put ("The number is: ");
-         if Status (Standard_Output) = Success then
-            Put (I);
-            if Status (Standard_Output) = Success then
-               New_Line;
-            else
-               Put_Line (Standard_Error, "Error on Standard_Output");
-               exit;
-            end if;
-         else
-            Put_Line (Standard_Error, "Error on Standard_Output");
-            exit;
-         end if;
-      else
-         Put_Line (Standard_Error, "Error on Standard_Output");
-         exit;
-      end if;
+      SPARK.Text_IO.Put ("The number is: ");
+      SPARK.Text_IO.Integer_IO.Put (I);
+      SPARK.Text_IO.New_Line;
+      --  pragma Loop_Invariant (Is_Writable (Standard_Error) and
+      --                         Status (Standard_Error) = Success);
+      --  if Status (Standard_Output) = Success then
+      --     Put ("The number is: ");
+      --     if Status (Standard_Output) = Success then
+      --        Put (I);
+      --        if Status (Standard_Output) = Success then
+      --           New_Line;
+      --        else
+      --           Put_Line (Standard_Error, "Error on Standard_Output");
+      --           exit;
+      --        end if;
+      --     else
+      --        Put_Line (Standard_Error, "Error on Standard_Output");
+      --        exit;
+      --     end if;
+      --  else
+      --     Put_Line (Standard_Error, "Error on Standard_Output");
+      --     exit;
+      --  end if;
    end loop;
 end Use_Int_IO;

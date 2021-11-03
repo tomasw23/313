@@ -1,4 +1,9 @@
-These files are all from /usr/gnat/share/examples/spark/spark_io/
+These files are all from 
+  /home/<username>/opt/GNAT/2021/share/examples/spark/spark_io/use_int_io_1.adb
+of my distribution (note that the path in your filesystem is different
+depending on where you installed your files)
+
+/usr/gnat/share/examples/spark/spark_io/
 of the distribution.
 It might actually be the 2014 version not the 2015 version.
 sect6/example6-15/ contains the 2015 version
