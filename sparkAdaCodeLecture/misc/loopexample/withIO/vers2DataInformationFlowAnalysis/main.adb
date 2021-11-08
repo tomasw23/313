@@ -22,10 +22,10 @@ begin
      AS_Put("Res = ");
      AS_Put_Line(Res);   
      loop
-	As_Put("Do you want to try again (y/n)? ");
-	As_Get_Line(User_Input, Last);
-	exit when Last > 0;
-	As_Put_Line("Please enter a non-empty string");
+        As_Put("Do you want to try again (y/n)? ");
+        As_Get_Line(User_Input, Last);
+        exit when Last > 0;
+        As_Put_Line("Please enter a non-empty string");
      end loop;
      exit when User_Input(1 .. 1) = "n";
    end loop;           
