@@ -28,16 +28,16 @@ begin
       Get_Action(Route, The_Mode);
       if The_Mode = Mode_Open
       then
-	 Open(Segment_State, Signal_State,Route, Success);
+         Open(Segment_State, Signal_State,Route, Success);
       else
-	 Move(Segment_State, Signal_State, Route, Success);
+         Move(Segment_State, Signal_State, Route, Success);
       end if;
       if Success
       then
-	 As_Put_Line("*** Success *** ");
+         As_Put_Line("*** Success *** ");
       else
-	 As_Put_Line("*** Route not Allowed *** ");
-	 
+         As_Put_Line("*** Route not Allowed *** ");
+         
       end if;
    end loop;
 end Main;
