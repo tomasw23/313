@@ -3,8 +3,8 @@ package Example15 is
    type Genders is (Male,Female);
    type Person is
       record
-	 YearOfBirth : Integer;
-	 Gender : Genders;
+         YearOfBirth : Integer;
+         Gender : Genders;
       end record;
    
    Sum : Integer:= 0;
@@ -13,7 +13,7 @@ package Example15 is
    
    
    procedure Myproc(B: in Integer;
-		    C: out Integer);
+                    C: out Integer);
    
    function F(B,C : in Integer) return Integer;
    

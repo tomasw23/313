@@ -5,7 +5,7 @@ use Example;
 
 
 procedure Main
-    with Global => (Output => Glob);
+  with Global => (Output => Glob);
 
 
 

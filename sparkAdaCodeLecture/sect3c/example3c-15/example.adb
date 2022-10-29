@@ -1,5 +1,5 @@
 package body Example 
-  with SPARK_MODE => off
+with SPARK_MODE => off
 is
    procedure Exchange(X : in out Boolean;  Y : in out Boolean) is
    begin
@@ -9,4 +9,4 @@ is
    end Exchange;   
    
 end Example;
-  
+

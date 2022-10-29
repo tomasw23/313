@@ -1,5 +1,5 @@
 package Example 
-  with SPARK_MODE
+with SPARK_MODE
 --  ,
 --       Abstract_State => AbsGlob
 is
@@ -17,4 +17,4 @@ is
 end Example;
   
   
-  
+

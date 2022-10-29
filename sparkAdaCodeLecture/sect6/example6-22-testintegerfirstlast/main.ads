@@ -13,4 +13,4 @@ use  SPARK.Text_IO;
 
 
 procedure Main
-    with Global => (Output => (Standard_Output, Standard_Input));
+  with Global => (Output => (Standard_Output, Standard_Input));

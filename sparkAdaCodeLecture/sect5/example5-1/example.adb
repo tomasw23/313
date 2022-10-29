@@ -8,8 +8,8 @@ begin
       N := N - 1;
       M := M + 1;
    else
-	N := N + 1;
-	M := M - 1;
+      N := N + 1;
+      M := M - 1;
    end if;
    
 end Example;

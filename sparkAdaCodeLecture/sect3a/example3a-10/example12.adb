@@ -7,12 +7,12 @@ package body Example12 is
    
    
    
-procedure Myproc(B: out Integer) is
-begin
-   B := 0;
-   Put(B);
-end MyProc;
+   procedure Myproc(B: out Integer) is
+   begin
+      B := 0;
+      Put(B);
+   end MyProc;
 
 
 end Example12;
-	    
+

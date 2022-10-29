@@ -1,5 +1,5 @@
 package body Example  
-  with SPARK_MODE is
+with SPARK_MODE is
    
    procedure Exchange (X, Y  : in out Float) 
    is
@@ -24,4 +24,4 @@ package body Example
    end Init;
      
 end Example;
-  
+

@@ -31,8 +31,8 @@ package Cooling_System_Nuclear_Power is
    -- status of the overall system consisting of the temperature and the status of the cooling system
    type Status_System_Type  is 
       record
-	 Temperature_Measured   : Temperature_Range;
-	 Status_Cooling_System : Status_Cooling_System_Type;
+         Temperature_Measured   : Temperature_Range;
+         Status_Cooling_System : Status_Cooling_System_Type;
       end record;
    
    -- Status System is a global variable determining the status of the system
@@ -45,8 +45,8 @@ package Cooling_System_Nuclear_Power is
    procedure Read_Temperature with
      Global => (In_Out => (Standard_Output, Standard_Input,Status_System)),
      Depends => (Standard_Output => (Standard_Output,Standard_Input),
-		 Standard_Input  => Standard_Input,
-		 Status_System   => (Status_System, Standard_Input));
+                 Standard_Input  => Standard_Input,
+                 Status_System   => (Status_System, Standard_Input));
    
    -- This function converts a value into Status_Cooling_System_Type
    -- into a string which can be printed to console
@@ -57,7 +57,7 @@ package Cooling_System_Nuclear_Power is
    -- Print Status prints out the status of the system on console
    procedure Print_Status with
      Global => (In_Out => Standard_Output, 
-		Input  => Status_System),
+                Input  => Status_System),
      Depends => (Standard_Output => (Standard_Output,Status_System));
    
    
@@ -67,9 +67,9 @@ package Cooling_System_Nuclear_Power is
    -- Is_Safe(Status_System) means that the system is safe
    
    function Is_Safe (Status : Status_System_Type) return Boolean is
-      (if Integer(Status.Temperature_Measured) > Critical_Temperature 
-	      then Status.Status_Cooling_System = Activated
-              else Status.Status_Cooling_System = Not_Activated);
+     (if Integer(Status.Temperature_Measured) > Critical_Temperature 
+      then Status.Status_Cooling_System = Activated
+      else Status.Status_Cooling_System = Not_Activated);
 
    
    

@@ -1,5 +1,5 @@
 package Example 
-  with SPARK_MODE 
+with SPARK_MODE 
 is
    Mainvar : Integer;
    
@@ -10,4 +10,4 @@ end Example;
    
   
   
-  
+

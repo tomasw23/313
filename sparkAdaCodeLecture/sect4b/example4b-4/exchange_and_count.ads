@@ -6,8 +6,8 @@ procedure Exchange_And_Count(X,Y,Z : in out Integer)
   -- 3 information flow errors 
   -- see README.txt
   with Depends => (X => Y,
-		   Y => X,
-		   Z => Z);
+                   Y => X,
+                   Z => Z);
    
 
 

@@ -11,7 +11,7 @@ package Test is
      Pre  => X < Integer'Last,
      Post => Y = F(X);
    
-   end Test;
+end Test;
 
    
 

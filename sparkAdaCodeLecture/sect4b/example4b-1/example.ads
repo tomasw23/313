@@ -7,7 +7,7 @@ package Example is
    
    procedure Test2(X : in out Integer; Y : in out Integer)
      with Depends => (X => Y,
-		      Y => X);
+                      Y => X);
 
 
    procedure Test3(Y : out Integer)

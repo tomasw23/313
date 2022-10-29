@@ -4,7 +4,7 @@ package Test is
 
    function F(X : Integer) return Integer;
    
-   end Test;
+end Test;
 
    
 

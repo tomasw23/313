@@ -6,19 +6,22 @@ package Test is
      
      
    procedure Init
-     with Global => (Output => A),
-     Depends => (A => null),
-     Post => (A = 0);
+     with 
+       Global => (Output => A),
+       Depends => (A => null),
+       Post => (A = 0);
    
    procedure Procedure1
-     with Global => (In_Out => A),
-          Depends => (A => A),
-          Post => (A = A'Old + 2);
+     with 
+       Global => (In_Out => A),
+       Depends => (A => A),
+       Post => (A = A'Old + 2);
    
    Procedure Main
-     with Global => (Output => A),
-          Depends => (A => null),
-          Post => (A = 2);
+     with 
+       Global => (Output => A),
+       Depends => (A => null),
+       Post => (A = 2);
    
    
 end Test;

@@ -9,8 +9,8 @@ is
 begin
    loop 
       if A = 5 then
-	 AS_Put_Line(A);
-	 exit;
+         AS_Put_Line(A);
+         exit;
       end if;
       -- gnatprove -P main.gpr --mode=prove
       --    fails because of a possible out of range error
@@ -20,5 +20,5 @@ begin
       --   succeeds (only flow analysis)
       A := A + 1;
       AS_Put_Line(A);
-  end loop;
+   end loop;
 end Example;

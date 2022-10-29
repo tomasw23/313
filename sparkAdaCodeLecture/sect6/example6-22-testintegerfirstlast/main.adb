@@ -14,7 +14,7 @@ begin
    AS_Init_Standard_Input;   
    AS_Put("Integer'First = ");   
    AS_Put_Line(Integer'First);
-      AS_Put("Integer'Last = ");   
+   AS_Put("Integer'Last = ");   
    AS_Put_Line(Integer'Last);
    
 end Main;

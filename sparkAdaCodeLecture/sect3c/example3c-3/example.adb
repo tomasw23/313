@@ -9,10 +9,10 @@ is
 begin
    Outer: loop 
       if A = 5 then
-	 if A + 0 = 6 then  
-	    As_Put_Line(A);
-	    exit outer;
-	 end if;
+         if A + 0 = 6 then  
+            As_Put_Line(A);
+            exit outer;
+         end if;
       end if;
       -- gnatprove -P main.gpr --mode=prove
       --   fails because of possible out of range error
@@ -20,5 +20,5 @@ begin
       --   succeeds (no range check)
       A := A + 1;
       AS_Put_Line(A);
-  end loop Outer;
+   end loop Outer;
 end Example;

@@ -2,9 +2,9 @@
 
 procedure Main
   with SPARK_MODE
-      is  
+is  
 begin
    Init;
 end Main;
    
-   
+

@@ -5,7 +5,7 @@ with AS_IO_Wrapper;  use AS_IO_Wrapper;
 
 procedure Main is
    X : Integer;
-      Length_String : constant Integer := 512;
+   Length_String : constant Integer := 512;
    -- strings as variables must have fixed length in SPARK Ada 
    -- the length we have chosen in this example is determined here by this value
    -- which is a constant.

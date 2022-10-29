@@ -7,9 +7,9 @@ package body Loop_Entry is
    begin
       -- pragma Assert (A = Aold and B  = Bold);
       while (A > 0) loop
-	 A := A - 1;
-	 B := B + 1;
-	 pragma Loop_Invariant (A + B = Aold + Bold);
+         A := A - 1;
+         B := B + 1;
+         pragma Loop_Invariant (A + B = Aold + Bold);
       end loop;
    end Test;
 

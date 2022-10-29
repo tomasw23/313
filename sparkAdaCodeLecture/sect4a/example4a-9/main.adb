@@ -3,8 +3,8 @@ with As_Io_Wrapper; use As_Io_Wrapper;
 
 
 procedure main
-      is  
-      Y : Integer := 5;
+is  
+   Y : Integer := 5;
 begin
    Init;
    while (Y > 0) loop
@@ -13,4 +13,4 @@ begin
    end loop;
 end Main;
    
-   
+

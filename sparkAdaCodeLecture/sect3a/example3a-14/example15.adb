@@ -7,7 +7,7 @@ package body Example15 is
    Z : Person;
    
    procedure Myproc(B: in Integer;
-		    C: out Integer) is   
+                    C: out Integer) is   
    begin
       Put("B=");
       Put(B);
@@ -34,9 +34,9 @@ package body Example15 is
       New_Line;
       Put("gender = ");
       if X.Gender = Male then
-	 Put("male");
+         Put("male");
       else 
-	 Put("female");
+         Put("female");
       end if;
       New_Line;      
    end ShowRecord;
@@ -44,11 +44,11 @@ package body Example15 is
    procedure ShowZ is
    begin
       ShowRecord(Z);
-      end;
+   end;
 
 begin
    X := 10;
    Z.YearOfBirth:= 1970;
    Z.Gender := Male;
 end Example15;
-	    
+

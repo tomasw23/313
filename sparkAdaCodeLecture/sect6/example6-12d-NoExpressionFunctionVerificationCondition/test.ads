@@ -7,7 +7,7 @@ package Test is
    
    procedure Test1 (X,Y : in out Integer) with
      Depends => (X => X,
-		 Y => Y),
+                 Y => Y),
      Pre => (Cond(X,Y) and X <= 10000 and Y <= 10000),
      Post => Cond (X,Y);
    

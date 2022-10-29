@@ -5,7 +5,7 @@ package body Example13 is
    
    
    procedure Myproc(B: in Integer;
-		    C: out Integer) is   
+                    C: out Integer) is   
    begin
       Put("B=");
       Put(B);
@@ -23,4 +23,4 @@ package body Example13 is
 
 
 end Example13;
-	    
+

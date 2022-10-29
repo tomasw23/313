@@ -4,11 +4,11 @@ with Example; use Example;
 with SPARK.Text_IO; use SPARK.Text_IO;
 
 package Main 
-  is
+is
 
-  procedure A1  with   Global => (Output => Glob,
-                                  In_Out =>  Standard_Output);
-  end Main;
+   procedure A1  with   Global => (Output => Glob,
+                                   In_Out =>  Standard_Output);
+end Main;
 
 
 

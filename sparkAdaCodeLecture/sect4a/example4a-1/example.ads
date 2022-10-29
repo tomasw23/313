@@ -1,5 +1,5 @@
 package Example 
-  with SPARK_MODE
+with SPARK_MODE
 is
    Glob : Integer;
    
@@ -15,4 +15,4 @@ is
 end Example;
   
   
-  
+

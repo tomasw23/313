@@ -1,11 +1,11 @@
 package body Example  
-  with SPARK_MODE,
-       Refined_State => (AbsGlob => Glob)  
+with SPARK_MODE,
+  Refined_State => (AbsGlob => Glob)  
 is
    Glob : Integer;
    
    function A1 (X : in Integer) return Integer
-       with Refined_Global => Glob 
+     with Refined_Global => Glob 
    is
    begin
       -- checking
@@ -26,4 +26,4 @@ is
    end Init;
      
 end Example;
-  
+

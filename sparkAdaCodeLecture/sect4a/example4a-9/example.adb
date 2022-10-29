@@ -1,5 +1,5 @@
 package body Example  
-  with SPARK_MODE
+with SPARK_MODE
 is
    
    
@@ -23,4 +23,4 @@ is
    end Init;
      
 end Example;
-  
+

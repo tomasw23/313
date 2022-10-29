@@ -9,20 +9,20 @@ Procedure Example10 is
 begin
    Outer_Loop: For J in 1 .. M loop
       for K in 3 .. N loop
-	 Put("J=");
-	 Put(J);
-	 New_Line;	 
-	 Put("K=");
-	 Put(K);
-	 New_Line;	 
-	 A := J - K;
-	 Put("A=");
-	 Put(A);	 
-	 New_Line;
-	 exit Outer_Loop when A = 0;
-	 end loop;
+         Put("J=");
+         Put(J);
+         New_Line;	 
+         Put("K=");
+         Put(K);
+         New_Line;	 
+         A := J - K;
+         Put("A=");
+         Put(A);	 
+         New_Line;
+         exit Outer_Loop when A = 0;
+      end loop;
    end loop Outer_loop;
 end Example10;
   
      
-	    
+

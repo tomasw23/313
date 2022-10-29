@@ -1,5 +1,5 @@
 package Example 
-  with SPARK_MODE
+with SPARK_MODE
 is
    
    procedure Wrong_Exchange (X, Y  : in out Float); 
@@ -7,4 +7,4 @@ is
 end Example;
   
   
-  
+

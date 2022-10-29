@@ -1,5 +1,5 @@
 package Example 
-  with SPARK_MODE,  Abstract_State => AbsGlob
+with SPARK_MODE,  Abstract_State => AbsGlob
 is
    
    function A1 (X : in Integer) return Integer
@@ -12,4 +12,4 @@ is
 end Example;
   
   
-  
+

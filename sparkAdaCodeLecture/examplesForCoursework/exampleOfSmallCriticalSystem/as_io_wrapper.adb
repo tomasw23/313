@@ -23,18 +23,6 @@ package body AS_IO_Wrapper is
    end AS_Init_Standard_Output;
 
    
-   
-
-   --  procedure AS_Get (Item : out Character_Result) is
-   --  begin
-   --     --  loop
-   --     --  	 exit when Status (Standard_Input) = Success;
-   --     --  	 Put_Line (Standard_Error, "Error on Standard_Input");
-   --     --  end loop;
-   --     SPARK.Text_IO.Get(Item);
-   --  end AS_Get;      
-
-   
    procedure AS_Put (Item : in  Character) is
    begin
       SPARK.Text_IO.Put (Item);
@@ -45,7 +33,14 @@ package body AS_IO_Wrapper is
       --  end if;
    end AS_Put;
       
-   
+   --  procedure AS_Get (Item : out Character_Result) is
+   --  begin
+   --     --  loop
+   --     --  	 exit when Status (Standard_Input) = Success;
+   --     --  	 Put_Line (Standard_Error, "Error on Standard_Input");
+   --     --  end loop;
+   --     SPARK.Text_IO.Get(Item);
+   --  end AS_Get;    
    
    procedure AS_Get (Item : out String) is
    begin
@@ -107,10 +102,10 @@ package body AS_IO_Wrapper is
       Length_Input_Used : Positive;
    begin
       loop
-	 SPARK.Text_IO.Get_Line(Input_By_User,Length_Input);
-	 Get (Input_By_User(1 .. Length_Input) ,Converted_Result,Length_Input_Used);
-	 exit when Converted_Result.Status = Success and Length_Input_Used = Length_Input;
-	 SPARK.Text_IO.Put_Line(Prompt_Try_Again_When_Not_Integer);
+         SPARK.Text_IO.Get_Line(Input_By_User,Length_Input);
+         Get (Input_By_User(1 .. Length_Input) ,Converted_Result,Length_Input_Used);
+         exit when Converted_Result.Status = Success and Length_Input_Used = Length_Input;
+         SPARK.Text_IO.Put_Line(Prompt_Try_Again_When_Not_Integer);
       end loop;
       Item := Converted_Result.Item;
    end AS_Get;      
@@ -129,10 +124,10 @@ package body AS_IO_Wrapper is
    end AS_Put_Line;
 
 end AS_IO_Wrapper;
+
    
    
    
    
    
-   
-   
+

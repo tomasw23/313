@@ -1,5 +1,5 @@
 package Example 
-  with SPARK_MODE
+with SPARK_MODE
 is
    
    Glob : Float;
@@ -7,7 +7,7 @@ is
    procedure Exchange (X, Y  : in out Float); 
    
    function A1 (X : in Float) return Float
-      with Global => Glob;
+     with Global => Glob;
 
    
    procedure Init;
@@ -15,4 +15,4 @@ is
 end Example;
   
   
-  
+

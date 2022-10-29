@@ -1,5 +1,5 @@
 package Example 
-  with SPARK_MODE 
+with SPARK_MODE 
 is
    type Angle is new Integer;
    
@@ -12,4 +12,4 @@ end Example;
    
   
   
-  
+

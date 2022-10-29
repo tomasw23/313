@@ -1,5 +1,5 @@
 package Example2c1 
-  with SPARK_MODE
+with SPARK_MODE
   
 is
    Z : Integer; 

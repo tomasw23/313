@@ -1,5 +1,5 @@
 package Example 
-  with SPARK_MODE 
+with SPARK_MODE 
 is
    type Test is record
       A : Integer;
@@ -18,4 +18,4 @@ is
 end Example;
   
   
-  
+

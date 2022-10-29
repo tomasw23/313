@@ -6,9 +6,9 @@ is
 begin
    loop 
       if A = 5 then
-	 return A+3;
+         return A+3;
       elsif A = 4 then 
-	   exit;
+         exit;
       end if;
       -- checking using
       --    gnatprove -P main.gpr --mode=prove

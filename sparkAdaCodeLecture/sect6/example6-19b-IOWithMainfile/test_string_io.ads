@@ -9,4 +9,4 @@ use  SPARK.Text_IO;
 
 
 procedure Test_String_IO
-    with Global => (Output => (Standard_Output, Standard_Input));
+  with Global => (Output => (Standard_Output, Standard_Input));

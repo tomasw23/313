@@ -1,5 +1,5 @@
 package Example 
-  with SPARK_MODE
+with SPARK_MODE
 is
    -- error reported as expected
    -- see README.txt 
@@ -8,4 +8,4 @@ is
 end Example;
   
   
-  
+

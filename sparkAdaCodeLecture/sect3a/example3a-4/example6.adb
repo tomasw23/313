@@ -12,14 +12,14 @@ Procedure Example6 is
 begin
    Myarray(17) := Fri;
    if Myarray(17) = Fri then
-	Put_Line("Fri");
-     else
-	Put_Line("Not Fri");
+      Put_Line("Fri");
+   else
+      Put_Line("Not Fri");
    end if;
    MyVector(17) := 5;
    Put(MyVector(17));
      
-  end Example6;
+end Example6;
   
      
-	    
+

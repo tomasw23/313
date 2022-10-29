@@ -19,21 +19,21 @@ package body Example is
    end Test3;
    
    
-  procedure Test4(X : out Integer; Y,Z : in Integer) is
-  begin
-     -- gnatprove reports overflow check error see README.txt
+   procedure Test4(X : out Integer; Y,Z : in Integer) is
+   begin
+      -- gnatprove reports overflow check error see README.txt
       X := Y + Z;
    end Test4;
    
    procedure Test5(X : in out Integer) is
    begin
-     -- gnatprove reports overflow check error see README.txt      
+      -- gnatprove reports overflow check error see README.txt      
       X := X + 1;
    end Test5;
    
-  procedure Test6(X : in out Integer; Y : in Integer) is
-  begin
-     -- gnatprove reports overflow check error see README.txt           
+   procedure Test6(X : in out Integer; Y : in Integer) is
+   begin
+      -- gnatprove reports overflow check error see README.txt           
       X := X + Y;
    end Test6;
    

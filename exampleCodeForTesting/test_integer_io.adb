@@ -18,5 +18,5 @@ begin
    AS_Put_Line("You typed in");
    AS_Put(X);
 end Test_Integer_IO;     
-   
+
 

@@ -11,24 +11,24 @@ package body Cooling_System_Nuclear_Power is
    begin
       AS_Put_Line("Please type in current temperature as read by sensors");
       loop
-	 AS_Get(Temperature,"Please type in an integer");
-	 exit when (Temperature >=0) and (Temperature <= Maximum_Temperature_Possible);
-	 AS_Put("Please type in a value between 0 and ");
-	 AS_Put(Maximum_Temperature_Possible);
-	 AS_Put_Line("");
+         AS_Get(Temperature,"Please type in an integer");
+         exit when (Temperature >=0) and (Temperature <= Maximum_Temperature_Possible);
+         AS_Put("Please type in a value between 0 and ");
+         AS_Put(Maximum_Temperature_Possible);
+         AS_Put_Line("");
       end loop;
       Status_System.Temperature_Measured := Temperature_Range(Temperature);
    end Read_Temperature;
    
    function Status_Cooling_System_To_String (Status_Cooling_System   : Status_Cooling_System_Type) return String is
-      begin
+   begin
       -- it would be better to use a case construct
       -- since I didn't teach it I use here an if then else
-	 if (Status_Cooling_System = Activated) 
-	 then return "Activated";
-	 else return "Not_Activated";
-	 end if;
-      end Status_Cooling_System_To_String;
+      if (Status_Cooling_System = Activated) 
+      then return "Activated";
+      else return "Not_Activated";
+      end if;
+   end Status_Cooling_System_To_String;
 	
    
    
@@ -56,7 +56,7 @@ package body Cooling_System_Nuclear_Power is
       AS_Init_Standard_Input; 
       AS_Init_Standard_Output;
       Status_System := (Temperature_Measured  => 0,
-			Status_Cooling_System => Not_Activated);
+                        Status_Cooling_System => Not_Activated);
    end Init;
    
    
@@ -65,4 +65,4 @@ package body Cooling_System_Nuclear_Power is
 end Cooling_System_Nuclear_Power;
 	
 
-      
+

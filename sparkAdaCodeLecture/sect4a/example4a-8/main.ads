@@ -4,10 +4,10 @@ with Example; use Example;
 with SPARK.Text_IO; use SPARK.Text_IO;
 
 package Main 
-  is
+is
 
-  procedure A1  with   Global => (Output => AbsGlob,
-                                  In_Out =>  Standard_Output);
+   procedure A1  with   Global => (Output => AbsGlob,
+                                   In_Out =>  Standard_Output);
 end Main;
 
 

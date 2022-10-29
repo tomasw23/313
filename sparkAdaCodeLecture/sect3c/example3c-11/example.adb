@@ -1,5 +1,5 @@
 package body Example 
-  with SPARK_MODE is
+with SPARK_MODE is
    
    Function F(X : Integer )  return Integer
    is

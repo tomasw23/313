@@ -1,8 +1,8 @@
 --pragma SPARK_Mode (Off);
 
 package body junction is
-  -- Define initial states of segments to 
-  -- indicate positions of cars.
+   -- Define initial states of segments to 
+   -- indicate positions of cars.
 
  
   
@@ -16,7 +16,7 @@ package body junction is
       
    end F;
  
-  function G(U: in out SmInteger) return SmInteger is
+   function G(U: in out SmInteger) return SmInteger is
    begin
       if U < 1000 then
          U := U + 2; 
@@ -24,11 +24,11 @@ package body junction is
       
       return U;
       
-  end G;
+   end G;
 
    procedure sideEffect(Y: in out SmInteger; X: out SmInteger) is  
-    begin
-    X := F(Y) + G(Y);
+   begin
+      X := F(Y) + G(Y);
 
    end sideEffect;
    
