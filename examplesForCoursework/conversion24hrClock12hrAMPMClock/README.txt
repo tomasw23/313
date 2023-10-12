@@ -47,20 +47,20 @@ Note a record occurs only in vers06 and vers07 - the later example refer
 
 Versions: 
   
-vers01OnlyAdaWithIntegers
-vers02OnlyAdaWithIOIntegersNoLibrary
-vers03OnlyAdaWithIOIntegersUsingLibrary
-vers04OnlyAdaWithTypes
-vers05OnlyAdaWithIOTypes
-vers06OnlyAdaWithTypesAndRecordType
-vers07OnlyAdaWithIOTypesAndRecordType
-vers08a-DataInformationFlowWithRecordType
-vers08DataInformationFlow
-vers09DataInformationFlowWithIO
-vers09a-DataInformationFlowWithRecordTypeIO
-vers09b-VerificationConditionsWithoutRange
-vers10FullVersion
-vers11FullVersionWithIO
+withoutIO/vers06OnlyAdaWithTypesAndRecordType
+withoutIO/vers08a-DataInformationFlowWithRecordType
+withoutIO/vers08DataInformationFlow
+withoutIO/vers10FullVersion
+
+withIO/vers03OnlyAdaWithIOIntegersUsingLibrary
+withIO/vers04OnlyAdaWithTypes
+withIO/vers05OnlyAdaWithIOTypes
+withIO/vers07OnlyAdaWithIOTypesAndRecordType
+withIO/vers09a-DataInformationFlowWithRecordTypeIO
+withIO/vers09b-VerificationConditionsWithoutRange
+withIO/vers09DataInformationFlowWithIO
+withIO/vers11FullVersionWithIO
+withIO/vers12FullVersionWithIOUsingSubType
 
 
 
