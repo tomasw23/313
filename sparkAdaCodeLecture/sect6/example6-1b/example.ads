@@ -5,7 +5,7 @@ procedure Example(M,N : in out Integer)
     Depends => (M => M,
                 N => (M,N)),
     Pre => (M > 0),
-    Post => (M + N = M'Old + N'Old and M = 0);
+    Post => (M = 0 and N = M'Old + N'Old);
    
 
 
