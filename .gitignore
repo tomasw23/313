@@ -2,7 +2,7 @@
 *.log
 *.yaml
 *.class
-*.xml
+*main-loc.xml
 *auto.cgpr
 *main.bexch
 *.ali
