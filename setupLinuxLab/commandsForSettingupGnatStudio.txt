@@ -1,0 +1,63 @@
+Commands for cloning the git repository
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+cd
+mkdir git
+cd git
+git clone https://bitbucket.org/anton_setzer/criticalhighintegritysystems.git
+
+# Starting Setup script
+Copy the file in this directory
+
+setupScriptLinuxLabGnatstudio.sh
+to
+~/Downloads
+Make it executable by changing properties -> Permissions -> Tick "Allow Executing file as program"
+Then in a terminal execute
+
+cd ~/Downloads/
+./setupScriptLinuxLabGnatstudio.sh
+
+Change preferences in gnatstudio for execute command
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Vers 1: Solutions once xterm is installed (probably from 18 Oct 2024 onwards)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Go to
+gnatstudio -> edit -> preferences -> External commands -> at right side change
+xterm -hold -e
+
+to
+xterm -hold
+
+Then once you have compiled a program
+(by selecting the main.adb file and using
+ Build -> Project -> Build <current file> )
+Use
+Build -> Run -> Custom
+tick both
+  Run in executables directory
+  Run in external terminal
+
+Vers 2: Solution which works without xterm
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Go to
+gnatstudio -> edit -> preferences -> External commands -> at right side change
+xterm -hold -e
+
+to
+env DBUS_SESSION_BUS_ADDRESS=%(env:DBUS_SESSION_BUS_ADDRESS) gnome-terminal -- bash -c ./main;bash
+
+
+Then once you have compiled a program
+(by selecting the main.adb file and using
+ Build -> Project -> Build <current file> )
+Use
+Build -> Run -> Custom
+Untick both
+  Run in executables directory
+  Run in external terminal
+
+Then press return
+gnome-shell should open
