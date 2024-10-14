@@ -4,9 +4,11 @@
 *.class
 *main-loc.xml
 *auto.cgpr
-*main.bexch
 *.ali
 *.o
+*.stderr
+*.stdout
+*.bexch
 *main
 *b-main.adb
 *b__main.adb
