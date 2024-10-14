@@ -6,13 +6,16 @@ mkdir git
 cd git
 git clone https://bitbucket.org/anton_setzer/criticalhighintegritysystems.git
 
-# Starting Setup script
-Copy the file in this directory
+Starting Setup script
+~~~~~~~~~~~~~~~~~~~~~
+Copy the file in this directory of the git repository
 
 setupScriptLinuxLabGnatstudio.sh
 to
 ~/Downloads
-Make it executable by changing properties -> Permissions -> Tick "Allow Executing file as program"
+
+Make it executable by changing
+    properties -> Permissions -> Tick "Allow Executing file as program"
 Then in a terminal execute
 
 cd ~/Downloads/
