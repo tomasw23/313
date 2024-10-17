@@ -44,7 +44,7 @@ tick both
   Run in external terminal
 It should show as command (you might need to choose from the
    drop down menu one of the other commands)
-xterm -e
+xterm -hold
 If that works then execute it.
 A terminal will open.
 To run the main file execute
@@ -55,7 +55,7 @@ Solution if this doesn't work (Vers1 )
 Some problems might occur for instance if you used Vers2 before
   and switched back to Vers1 (as recommended)
 In this case
-xterm -e
+xterm -hold
 doesn't show up directly as command to be execued.
 
 You might need to do the following:
@@ -66,7 +66,7 @@ Delete everything following this command
   (which could be some code changing the environment, so containing
    ENV )
 Once you deleted this in the bottom menu
-xterm -e
+xterm -hold
 should appear
 Now continue as before.
 SPARK Ada should remember your solution and next time you just
