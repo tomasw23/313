@@ -42,9 +42,45 @@ Build -> Run -> Custom
 tick both
   Run in executables directory
   Run in external terminal
+It should show as command (you might need to choose from the
+   drop down menu one of the other commands)
+xterm -e
+If that works then execute it.
+A terminal will open.
+To run the main file execute
+./main
 
-Vers 2: Solution which works without xterm
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Solution if this doesn't work (Vers1 )
+---------------------------------------
+Some problems might occur for instance if you used Vers2 before
+  and switched back to Vers1 (as recommended)
+In this case
+xterm -e
+doesn't show up directly as command to be execued.
+
+You might need to do the following:
+Look from the dropdown menu any of the options which displays
+  an expression starting with
+  %external [exec_dir]
+Delete everything following this command
+  (which could be some code changing the environment, so containing
+   ENV )
+Once you deleted this in the bottom menu
+xterm -e
+should appear
+Now continue as before.
+SPARK Ada should remember your solution and next time you just
+open it directly execute it and then type in the terminal which opens
+./main
+
+
+
+
+Vers 2: Solution which works without xterm (Obsolete)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+This solution is now obsolete since xterm is installed in the Linux
+Lab. It is kept here in case this problem reappears.
+
 Go to
 gnatstudio -> edit -> preferences -> External commands -> at right side change
 xterm -hold -e
